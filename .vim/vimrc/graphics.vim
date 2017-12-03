@@ -15,7 +15,6 @@ set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/
 
 syntax on
 
-
 set tabstop=4
 set smarttab
 set expandtab
@@ -50,8 +49,3 @@ set autoindent
 set copyindent
 set smartindent
 set cindent
-
-
-
-
-
