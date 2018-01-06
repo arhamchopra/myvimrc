@@ -1,5 +1,7 @@
 "This file contains the graphics settings"
 
+set encoding=utf-8
+
 set title  " Set window title automatically
 set nocompatible              " be iMproved, required
 

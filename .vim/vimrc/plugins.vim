@@ -1,20 +1,21 @@
 "This file includes all the plugins for my VIM
 call plug#begin('~/.vim/plugged')
 
+" Just trying out
+Plug 'Shougo/vimproc.vim', {'do':'make'}
+
+
 " Colorschemes for Vim
 Plug 'flazz/vim-colorschemes'
 
 " Relative and Absloute Numbering in Vim
-Plug 'myusuf3/numbers.vim'
+" Plug 'myusuf3/numbers.vim'
 
 " Swap file handler
 Plug 'autoswap.vim'
 
 " Maintains the indentation while pasting lines
 Plug 'sickill/vim-pasta'
-
-" Finding Source files for javascript
-Plug 'moll/vim-node'
 
 " Opening a file where you left
 Plug 'dietsche/vim-lastplace'
@@ -26,14 +27,14 @@ Plug 'Raimondi/delimitMate'
 Plug 'ggreer/the_silver_searcher'
 Plug 'mileszs/ack.vim'
 
+" Browse your directory in tree like manner
+Plug 'scrooloose/nerdtree', { 'on':'NERDTreeToggle'}
+
 " Make searching through files easier
 Plug 'ctrlpvim/ctrlp.vim'
 
 " Syntax checker for c,cpp,python,javascript and many more
 Plug 'scrooloose/syntastic'
-
-" Browse your directory in tree like manner
-Plug 'scrooloose/nerdtree'
 
 " Takes care of indentation while moving pieces of code 
 Plug 'matze/vim-move'
@@ -44,35 +45,47 @@ Plug 'scrooloose/nerdcommenter'
 " Code Completion, Snippet plugins for vim
 Plug 'Shougo/neocomplete.vim'
 Plug 'Shougo/neoinclude.vim'
-Plug 'davidhalter/jedi-vim'
-Plug 'Shougo/neosnippet.vim'
-Plug 'Shougo/neosnippet-snippets'
-Plug 'honza/vim-snippets'
-
-" Visualize your Vim undo tree
-Plug 'sjl/gundo.vim'
+" Plug 'Shougo/neosnippet.vim'
+" Plug 'Shougo/neosnippet-snippets'
+" Plug 'honza/vim-snippets'
 
 " This is one for a much better start screen
 Plug 'mhinz/vim-startify'
 
+" <<<<<<<<<<<<<<<< Scala >>>>>>>>>>>>>>>>
+" Haskell Support in Vim
+Plug 'lukerandall/haskellmode-vim', {'for':'haskell'}
+
+
+" <<<<<<<<<<<<<<<< Scala >>>>>>>>>>>>>>>>
 " Scala Support in Vim
-Plug 'derekwyatt/vim-scala'
+Plug 'derekwyatt/vim-scala', {'for':'scala'}
 
-"JavaScript bundle for vim, this bundle provides syntax highlighting and improved indentation.
-Plug 'pangloss/vim-javascript'     
 
-"This is the stock Javascript syntax file"
-Plug 'jelera/vim-javascript-syntax'
+" <<<<<<<<<<<<<<<< Javascript >>>>>>>>>>>>>>>>
+" JavaScript bundle for vim, this bundle provides syntax highlighting and improved indentation.
+Plug 'pangloss/vim-javascript', {'for':'scala'}
+
+" This is the stock Javascript syntax file"
+Plug 'jelera/vim-javascript-syntax', {'for':'scala'}
+
+" Finding Source files for javascript
+Plug 'moll/vim-node', {'for':'scala'}
+
+
+" <<<<<<<<<<<<<<<< Python >>>>>>>>>>>>>>>>
+Plug 'davidhalter/jedi-vim', {'for':'python'}
+
+
+" <<<<<<<<<<<<<<<< Markdown >>>>>>>>>>>>>>>>
+Plug 'plasticboy/vim-markdown', {'for':'markdown'}
 
 " Quickly compile your code
-Plug 'thinca/vim-quickrun'
+" Plug 'thinca/vim-quickrun'
 Plug 'xuhdev/SingleCompile'
 
 " When you need some space for yourself and are to frutrated to go out
-Plug 'junegunn/goyo.vim'
-
-Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'
+" Plug 'junegunn/goyo.vim'
 
 call plug#end()
 
@@ -88,6 +101,7 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 1
 let g:ycm_show_diagnostics_ui = 0
+let g:syntastic_haskell_checkers = ['hlint']
 " let g:syntastic_python_checkers = ['/etc/python3']
 " let g:syntastic_python_python_exec = '/etc/python3'
 
@@ -182,30 +196,30 @@ let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:]"*\t]\%(\.\|->\
 let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
 
-"***************************NeoSnippets***************************"
-" Plugin key-mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
-"
-" SuperTab like snippets behavior.
-" imap <expr><TAB>
-" \ pumvisible() ? "\<C-n>" :
-" \ neosnippet#expandable_or_jumpable() ?
-" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-" \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-"
-" " For conceal markers.
-if has('conceal')
-  set conceallevel=2 concealcursor=niv
-endif"
-" Enable snipMate compatibility feature.
-let g:neosnippet#enable_snipmate_compatibility = 1
-"
-" Tell Neosnippet about the other snippets
-" Requires honza/vim-snippets 
-let g:neosnippet#snippets_directory='~/.vim/plugged/vim-snippets/snippets'
+" "***************************NeoSnippets***************************"
+" " Plugin key-mappings.
+" imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+" smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+" xmap <C-k>     <Plug>(neosnippet_expand_target)
+" "
+" " SuperTab like snippets behavior.
+" " imap <expr><TAB>
+" " \ pumvisible() ? "\<C-n>" :
+" " \ neosnippet#expandable_or_jumpable() ?
+" " \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+" smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+" " \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+" "
+" " " For conceal markers.
+" if has('conceal')
+"   set conceallevel=2 concealcursor=niv
+" endif"
+" " Enable snipMate compatibility feature.
+" let g:neosnippet#enable_snipmate_compatibility = 1
+" "
+" " Tell Neosnippet about the other snippets
+" " Requires honza/vim-snippets
+" let g:neosnippet#snippets_directory='~/.vim/plugged/vim-snippets/snippets'
 
 
 "***************************LastPlace***************************"
@@ -251,16 +265,17 @@ let g:javascript_conceal_prototype      = "P"
 let g:javascript_conceal_arrow_function = "⇒"
 
 
-"***************************GoYo***************************"
-let g:goyo_width=150
-let g:goyo_height=200
-let g:goyo_linenr=90
+" "***************************GoYo***************************"
+" let g:goyo_width=150
+" let g:goyo_height=200
+" let g:goyo_linenr=90
+"
+" function! s:goyo_enter()
+"   set fullscreen
+" endfunction
 
-function! s:goyo_enter()
-  set fullscreen 
-endfunction
 
-
-" SingleCompile
-nmap <F9> :SCCompile<cr><cr>
-nmap <F10> :SCCompileRun<cr><cr>
+"***************************Haskellmode-vim***************************"
+let g:haddock_browser="/usr/bin/firefox"
+let g:haddock_docdir="/home/arham/.vim/haskell-docs/"
+au BufEnter *.hs compiler ghc

@@ -69,3 +69,6 @@ nnoremap <F4> :NumbersToggle<CR>
 
 nnoremap <F6> :GundoToggle<CR>
 
+" SingleCompile
+nmap <F9> :SCCompile<cr><cr>
+nmap <F10> :SCCompileRun<cr><cr>
