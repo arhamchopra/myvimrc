@@ -58,5 +58,11 @@ set shiftwidth=4
 set shiftround
 set smarttab
 set expandtab
-autocmd Filetype make set noexpandtab 
+autocmd Filetype make set noexpandtab
 set wrap
+
+set undofile
+set undodir=~/.vim/.undo//
+set backupdir=~/.vim/.backup//
+set directory=~/.vim/.swp//
+
