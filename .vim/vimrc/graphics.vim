@@ -1,7 +1,5 @@
 "This file contains the graphics settings"
 
-set encoding=utf-8
-
 set title  " Set window title automatically
 set nocompatible              " be iMproved, required
 
@@ -17,18 +15,9 @@ set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/
 
 syntax on
 
-set tabstop=4
-set smarttab
-set expandtab
-autocmd Filetype make set noexpandtab
-
-set wrap
 
 set laststatus=2
 set backspace=indent,eol,start
-
-set shiftwidth=4
-set shiftround
 
 set wildmenu
 
@@ -36,6 +25,9 @@ set clipboard=unnamedplus
 
 set nu
 set rnu
+
+set autoread autowrite autowriteall
+set so=7
 
 set mouse=a
 set autochdir
@@ -51,3 +43,20 @@ set autoindent
 set copyindent
 set smartindent
 set cindent
+
+function Set80Char()
+    " Set a marker at the 80 char
+    highlight ColorColumn ctermbg=brown
+    if exists('+colorcolumn')
+    set colorcolumn=80
+    endif
+endfunction
+
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set shiftround
+set smarttab
+set expandtab
+autocmd Filetype make set noexpandtab 
+set wrap

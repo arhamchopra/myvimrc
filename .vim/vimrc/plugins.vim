@@ -4,7 +4,6 @@ call plug#begin('~/.vim/plugged')
 " Just trying out
 Plug 'Shougo/vimproc.vim', {'do':'make'}
 
-
 " Colorschemes for Vim
 Plug 'flazz/vim-colorschemes'
 
@@ -43,8 +42,8 @@ Plug 'matze/vim-move'
 Plug 'scrooloose/nerdcommenter'
 
 " Code Completion, Snippet plugins for vim
-Plug 'Shougo/neocomplete.vim'
-Plug 'Shougo/neoinclude.vim'
+" Plug 'Shougo/neocomplete.vim'
+" Plug 'Shougo/neoinclude.vim'
 " Plug 'Shougo/neosnippet.vim'
 " Plug 'Shougo/neosnippet-snippets'
 " Plug 'honza/vim-snippets'
@@ -77,12 +76,28 @@ Plug 'moll/vim-node', {'for':'scala'}
 Plug 'davidhalter/jedi-vim', {'for':'python'}
 
 
+" <<<<<<<<<<<<<<<< Latex >>>>>>>>>>>>>>>>
+" Autocompletions and snippets for tex
+Plug 'ymatz/vim-latex-completion', {'for':'tex'}
+
+" When latex is used with vim
+" Plug 'vim-latex/vim-latex', {'for':'tex'}
+Plug 'lervag/vimtex', {'for':'tex'}
+
+
 " <<<<<<<<<<<<<<<< Markdown >>>>>>>>>>>>>>>>
 Plug 'plasticboy/vim-markdown', {'for':'markdown'}
 
 " Quickly compile your code
 " Plug 'thinca/vim-quickrun'
 Plug 'xuhdev/SingleCompile'
+
+Plug 'easymotion/vim-easymotion'
+Plug 'ervandew/supertab'
+Plug 'vim-scripts/AutoComplPop'
+
+" Whitespaces are bad!!
+Plug 'ntpeters/vim-better-whitespace'
 
 " When you need some space for yourself and are to frutrated to go out
 " Plug 'junegunn/goyo.vim'
@@ -141,60 +156,63 @@ let g:NERDTrimTrailingWhitespace = 1
 
 "***************************Ack, SilverSurfer***************************"
 if executable('ag')
+  let g:ackprg = 'rg --vimgrep --no-heading'
+endif
+if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
 
 
-"***************************NeoComplete***************************"
-let g:acp_enableAtStartup = 0
-let g:neocomplete#enable_at_startup = 1
-" Use smartcase.
-let g:neocomplete#enable_smart_case = 1
-" Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-
-" Define dictionary.
-let g:neocomplete#sources#dictionary#dictionaries = {
-      \ 'default' : '',
-      \ 'vimshell' : $HOME.'/.vimshell_hist',
-      \ 'scheme' : $HOME.'/.gosh_completions'
-      \ }
-
-" Define keyword.
-if !exists('g:neocomplete#keyword_patterns')
-  let g:neocomplete#keyword_patterns = {}
-endif
-let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-
-inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
-
-" Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-autocmd FileType python setlocal omnifunc=jedi#completions
-let g:jedi#completions_enabled = 0
-let g:jedi#auto_vim_configuration = 0
-
-if !exists('g:neocomplete#force_omni_input_patterns')
-  let g:neocomplete#force_omni_input_patterns = {}
-endif
-let g:neocomplete#force_omni_input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
-
-" Enable heavy omni completion.
-if !exists('g:neocomplete#sources#omni#input_patterns')
-  let g:neocomplete#sources#omni#input_patterns = {}
-endif
-"let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:]*\t]\%(\.\|->\)'
-let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:]"*\t]\%(\.\|->\)\|\h\w*::'
-
-" For perlomni.vim setting.
-" https://github.com/c9s/perlomni.vim
-let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
-
+" "***************************NeoComplete***************************"
+" let g:acp_enableAtStartup = 0
+" let g:neocomplete#enable_at_startup = 1
+" " Use smartcase.
+" let g:neocomplete#enable_smart_case = 1
+" " Set minimum syntax keyword length.
+" let g:neocomplete#sources#syntax#min_keyword_length = 3
+" let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+"
+" " Define dictionary.
+" let g:neocomplete#sources#dictionary#dictionaries = {
+"       \ 'default' : '',
+"       \ 'vimshell' : $HOME.'/.vimshell_hist',
+"       \ 'scheme' : $HOME.'/.gosh_completions'
+"       \ }
+"
+" " Define keyword.
+" if !exists('g:neocomplete#keyword_patterns')
+"   let g:neocomplete#keyword_patterns = {}
+" endif
+" let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+"
+" inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
+"
+" " Enable omni completion.
+" autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+" autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+" autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+" autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+" autocmd FileType python setlocal omnifunc=jedi#completions
+" let g:jedi#completions_enabled = 0
+" let g:jedi#auto_vim_configuration = 0
+"
+" if !exists('g:neocomplete#force_omni_input_patterns')
+"   let g:neocomplete#force_omni_input_patterns = {}
+" endif
+" let g:neocomplete#force_omni_input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
+"
+" " Enable heavy omni completion.
+" if !exists('g:neocomplete#sources#omni#input_patterns')
+"   let g:neocomplete#sources#omni#input_patterns = {}
+" endif
+" "let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+" let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:]*\t]\%(\.\|->\)'
+" let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:]"*\t]\%(\.\|->\)\|\h\w*::'
+"
+" " For perlomni.vim setting.
+" " https://github.com/c9s/perlomni.vim
+" let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+"
 
 " "***************************NeoSnippets***************************"
 " " Plugin key-mappings.
@@ -227,6 +245,7 @@ let g:lastplace_ignore = "gitcommit,gitrebase,svn,hgcommit"
 
 
 "***************************CtrlP***************************"
+set grepprg=rg\ --color=always
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 'ra'
@@ -279,3 +298,48 @@ let g:javascript_conceal_arrow_function = "⇒"
 let g:haddock_browser="/usr/bin/firefox"
 let g:haddock_docdir="/home/arham/.vim/haskell-docs/"
 au BufEnter *.hs compiler ghc
+
+
+"***************************Jedi***************************"
+" jedi.preload_module('os', 'sys', 'math', 'whatever_module_you_want')
+" Load rope plugin
+let g:jedi#use_splits_not_buffers = "left"
+let g:jedi#popup_on_dot = 1
+let g:jedi#show_call_signatures = "0"
+" Jedi too slow --> Rope off
+let g:pymode_rope = 0
+
+
+"***************************SuperTab***************************"
+let g:SuperTabDefaultCompletionType = "<c-n>"
+
+
+"***************************vimtex***************************"
+let g:vimtex_enabled = 1
+let g:vimtex_compiler_enabled = 1
+let g:vimtex_compiler_callback_hooks = []
+let g:vimtex_compiler_method = "latexmk"
+let g:vimtex_compiler_latexmk = {
+    \ 'backend' : 'jobs',
+    \ 'background' : 1,
+    \ 'callback' : 0,
+    \ 'continuous' : 0,
+    \ 'executable' : 'latexmk',
+    \ 'options' : [
+    \   '-pdf',
+    \   '-verbose',
+    \   '-file-line-error',
+    \   '-synctex=1',
+    \   '-interaction=nonstopmode',
+    \ ],
+    \}
+let g:vimtex_complete_enabled = 1
+let g:vimtex_fold_enabled = 0
+let g:vimtex_imaps_enabled = 1
+let g:vimtex_indent_enabled = 1
+let g:vimtex_motion_enabled = 1
+let g:vimtex_labels_enabled = 0
+let g:tex_flavor = "latex"
+let g:tex_fast = "cmMprs"
+let g:tex_conceal = ""
+let g:tex_comment_nospell = 1
