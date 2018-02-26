@@ -1,4 +1,5 @@
 "This file contains the graphics settings"
+set encoding=utf-8
 
 set title  " Set window title automatically
 set nocompatible              " be iMproved, required
@@ -11,7 +12,8 @@ autocmd BufEnter * lcd %:p:h
 
 colorscheme jellybeans
 
-set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/
+" set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/
+let g:airline_theme='wombat'
 
 syntax on
 
@@ -39,6 +41,7 @@ set smartcase " ...unless capital letters are used
 set showcmd
 set cursorline
 
+
 set autoindent
 set copyindent
 set smartindent
@@ -65,4 +68,6 @@ set undofile
 set undodir=~/.vim/.undo//
 set backupdir=~/.vim/.backup//
 set directory=~/.vim/.swp//
+
+" set termguicolors
 

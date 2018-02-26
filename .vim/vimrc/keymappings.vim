@@ -8,6 +8,7 @@ nnoremap <leader>qv : source $MYVIMRC<cr>
 " Some Shotcuts for tab management
 nnoremap <leader>n :tabe<cr>
 nnoremap <leader>t :tabnext<cr>
+nnoremap <leader><S-t> :tabprev<CR>
 
 " NerdTree
 nnoremap <F2> :NERDTreeToggle<cr>
@@ -50,9 +51,8 @@ nnoremap <leader>s :nohlsearch<cr>
 
 " move out of insert mode
 inoremap jk <esc>
-
 " Some Utiliy for copy and paste
-vnoremap <C-c> *y
+vnoremap <C-c> "+y
 
 " AutoIndent
 nnoremap <F3> maggvG=`a
@@ -78,3 +78,6 @@ imap <up> <nop>
 imap <down> <nop>
 imap <right> <nop>
 imap <left> <nop>
+
+nmap j <Plug>(accelerated_jk_gj)
+nmap k <Plug>(accelerated_jk_gk)

@@ -1,17 +1,19 @@
 "This file includes all the plugins for my VIM
+
+let mapleader="\<Space>"
+
 call plug#begin('~/.vim/plugged')
 
 " Just trying out
 Plug 'Shougo/vimproc.vim', {'do':'make'}
+Plug 'vim-scripts/AutoComplPop'
 
 " Colorschemes for Vim
 Plug 'flazz/vim-colorschemes'
 
-" Relative and Absloute Numbering in Vim
-" Plug 'myusuf3/numbers.vim'
-
-" Swap file handler
-Plug 'autoswap.vim'
+" Airline
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 " Maintains the indentation while pasting lines
 Plug 'sickill/vim-pasta'
@@ -22,12 +24,18 @@ Plug 'dietsche/vim-lastplace'
 " Automatic closing to tags quotes,brackets, etc
 Plug 'Raimondi/delimitMate'
 
-" Search for a word in all files of current directory 
+" Search for a word in all files of current directory
 Plug 'ggreer/the_silver_searcher'
 Plug 'mileszs/ack.vim'
 
+"A Powerful Commenting Tool"
+Plug 'scrooloose/nerdcommenter'
+
 " Browse your directory in tree like manner
 Plug 'scrooloose/nerdtree', { 'on':'NERDTreeToggle'}
+
+" Browse your undo history in a tree like manner
+Plug 'sjl/gundo.vim'
 
 " Make searching through files easier
 Plug 'ctrlpvim/ctrlp.vim'
@@ -35,11 +43,11 @@ Plug 'ctrlpvim/ctrlp.vim'
 " Syntax checker for c,cpp,python,javascript and many more
 Plug 'scrooloose/syntastic'
 
-" Takes care of indentation while moving pieces of code 
+" Takes care of indentation while moving pieces of code
 Plug 'matze/vim-move'
 
-"A Powerful Commenting Tool"
-Plug 'scrooloose/nerdcommenter'
+" Make repeated j,k less of a pain... jump faster
+Plug 'rhysd/accelerated-jk'
 
 " Code Completion, Snippet plugins for vim
 " Plug 'Shougo/neocomplete.vim'
@@ -51,56 +59,48 @@ Plug 'scrooloose/nerdcommenter'
 " This is one for a much better start screen
 Plug 'mhinz/vim-startify'
 
-" <<<<<<<<<<<<<<<< Scala >>>>>>>>>>>>>>>>
+" <<<<<<<<<<<<<<<< Haskell >>>>>>>>>>>>>>>>
 " Haskell Support in Vim
 Plug 'lukerandall/haskellmode-vim', {'for':'haskell'}
-
+Plug 'neovimhaskell/haskell-vim', {'for':'haskell'}
 
 " <<<<<<<<<<<<<<<< Scala >>>>>>>>>>>>>>>>
 " Scala Support in Vim
 Plug 'derekwyatt/vim-scala', {'for':'scala'}
 
-
 " <<<<<<<<<<<<<<<< Javascript >>>>>>>>>>>>>>>>
 " JavaScript bundle for vim, this bundle provides syntax highlighting and improved indentation.
-Plug 'pangloss/vim-javascript', {'for':'scala'}
-
+Plug 'pangloss/vim-javascript', {'for':'javascript'}
 " This is the stock Javascript syntax file"
-Plug 'jelera/vim-javascript-syntax', {'for':'scala'}
-
+Plug 'jelera/vim-javascript-syntax', {'for':'javascript'}
 " Finding Source files for javascript
-Plug 'moll/vim-node', {'for':'scala'}
-
+Plug 'moll/vim-node', {'for':'javascript'}
 
 " <<<<<<<<<<<<<<<< Python >>>>>>>>>>>>>>>>
 Plug 'davidhalter/jedi-vim', {'for':'python'}
 
-
 " <<<<<<<<<<<<<<<< Latex >>>>>>>>>>>>>>>>
 " Autocompletions and snippets for tex
 Plug 'ymatz/vim-latex-completion', {'for':'tex'}
-
 " When latex is used with vim
-" Plug 'vim-latex/vim-latex', {'for':'tex'}
 Plug 'lervag/vimtex', {'for':'tex'}
 
 
 " <<<<<<<<<<<<<<<< Markdown >>>>>>>>>>>>>>>>
 Plug 'plasticboy/vim-markdown', {'for':'markdown'}
+Plug 'JamshedVesuna/vim-markdown-preview', {'for':'markdown'}
 
 " Quickly compile your code
-" Plug 'thinca/vim-quickrun'
 Plug 'xuhdev/SingleCompile'
 
+" Moving around just became a whole lot easier
 Plug 'easymotion/vim-easymotion'
+
+" The all powerful tab for doing everything else
 Plug 'ervandew/supertab'
-Plug 'vim-scripts/AutoComplPop'
 
 " Whitespaces are bad!!
 Plug 'ntpeters/vim-better-whitespace'
-
-" When you need some space for yourself and are to frutrated to go out
-" Plug 'junegunn/goyo.vim'
 
 call plug#end()
 
@@ -117,8 +117,8 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 1
 let g:ycm_show_diagnostics_ui = 0
 let g:syntastic_haskell_checkers = ['hlint']
-" let g:syntastic_python_checkers = ['/etc/python3']
-" let g:syntastic_python_python_exec = '/etc/python3'
+let g:syntastic_python_checkers = ['/etc/python3']
+let g:syntastic_python_python_exec = '/etc/python3'
 
 
 "***************************NerdTree***************************"
@@ -137,19 +137,21 @@ let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 
 
+"***************************Airline***************************"
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'default'
+let g:airline_powerline_fonts = 1
+
+
 "***************************NerdCommenter***************************"
 " Add spaces after comment delimiters by default"
 let g:NERDSpaceDelims = 1
-
 " Use compact syntax for prettified multi-line comments"
 let g:NERDCompactSexyComs = 1
-
 " Align line-wise comment delimiters flush left instead of following code indentation"
 let g:NERDDefaultAlign = 'left'
-
 " Allow commenting and inverting empty lines (useful when commenting a region)"
 let g:NERDCommentEmptyLines = 1
-
 " Enable trimming of trailing whitespace when uncommenting"
 let g:NERDTrimTrailingWhitespace = 1
 
@@ -284,20 +286,21 @@ let g:javascript_conceal_prototype      = "P"
 let g:javascript_conceal_arrow_function = "⇒"
 
 
-" "***************************GoYo***************************"
-" let g:goyo_width=150
-" let g:goyo_height=200
-" let g:goyo_linenr=90
-"
-" function! s:goyo_enter()
-"   set fullscreen
-" endfunction
-
-
 "***************************Haskellmode-vim***************************"
-let g:haddock_browser="/usr/bin/firefox"
-let g:haddock_docdir="/home/arham/.vim/haskell-docs/"
+let g:haddock_browser = "/usr/bin/firefox"
+" let g:haddock_docdir = "/home/arham/.vim/haskell-docs/"
+let g:haddock_browser_nosilent = 1
 au BufEnter *.hs compiler ghc
+
+
+"***************************haskell-vim***************************"
+let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
+let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
+let g:haskell_enable_arrowsyntax = 1      " to enable highlighting of `proc`
+let g:haskell_enable_pattern_synonyms = 1 " to enable highlighting of `pattern`
+let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
+let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
+let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
 
 
 "***************************Jedi***************************"
@@ -323,7 +326,7 @@ let g:vimtex_compiler_latexmk = {
     \ 'backend' : 'jobs',
     \ 'background' : 1,
     \ 'callback' : 0,
-    \ 'continuous' : 0,
+    \ 'continuous' : 1,
     \ 'executable' : 'latexmk',
     \ 'options' : [
     \   '-pdf',
@@ -343,3 +346,10 @@ let g:tex_flavor = "latex"
 let g:tex_fast = "cmMprs"
 let g:tex_conceal = ""
 let g:tex_comment_nospell = 1
+
+"***************************vim-markdown***************************"
+"
+"
+"***************************vim-markdown-preview***************************"
+let vim_markdown_preview_use_xdg_open=1
+let vim_markdown_preview_hotkey='<leader>p'
