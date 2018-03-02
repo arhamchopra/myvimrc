@@ -34,11 +34,26 @@ nmap <leader>s <Plug>(easymotion-overwin-f)
 
 " Tab Management
 " Create a new tab
-nnoremap <leader>n :tabe<cr>
+nnoremap <leader><C-n> :tabe<cr>
 "Move to next tab
-nnoremap <leader>t :tabnext<cr>
+nnoremap <leader><C-t> :tabnext<cr>
 "Move to previous tab
-nnoremap <leader>T :tabprev<cr>
+nnoremap <leader><C-T> :tabprev<cr>
+
+" Buffer Management
+" Create a new tab
+nnoremap <leader>n :enew<cr>
+"Move to next tab
+nnoremap <leader>l :bnext<cr>
+"Move to previous tab
+nnoremap <leader>h :bprevious<cr>
+" Kill current buffer and move to previous buffer
+nnoremap <leader>q :bprevious <bar> bdelete #<cr>
+" Show the list of all buffers open
+nnoremap <leader>bl :buffers<CR>
+" Switch between buffers
+nnoremap <leader>bs :buffers<cr>:buffer<Space>
+
 "Easy movement between different splits
 nnoremap <Tab> <C-W>W:cd %:p:h<cr>:<cr>
 

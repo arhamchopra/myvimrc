@@ -32,7 +32,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree', { 'on':'NERDTreeToggle'}
 
 " Browse your undo history in a tree like manner
-Plug 'sjl/gundo.vim'
+Plug 'sjl/gundo.vim', { 'on':'GundoToggle'}
 
 " Make searching through files easier
 Plug 'ctrlpvim/ctrlp.vim'
@@ -210,7 +210,6 @@ let g:javascript_conceal_arrow_function = "⇒"
 let g:haddock_browser = "/usr/bin/firefox"
 let g:haddock_docdir = "/home/arham/.vim/haskell-docs/"
 let g:haddock_browser_nosilent = 1
-au BufEnter *.hs compiler ghc
 
 
 "***************************Haskellmode-vim***************************"
@@ -357,6 +356,3 @@ let vim_markdown_preview_hotkey='<leader>p'
 " " Tell Neosnippet about the other snippets
 " " Requires honza/vim-snippets
 " let g:neosnippet#snippets_directory='~/.vim/plugged/vim-snippets/snippets'
-
-
-

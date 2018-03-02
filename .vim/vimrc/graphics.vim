@@ -51,9 +51,13 @@ set clipboard+=unnamedplus
 " ####### Section: Augroups ####### "
 augroup AutoUpdateFiles
     autocmd!
-    set autoread autowrite autowriteall
+    set autoread
     autocmd FocusGained,BufEnter * :silent! !
     autocmd FocusLost,WinLeave * :silent! w
+augroup END
+
+augroup Filetype_Settings
+    autocmd BufEnter *.hs compiler ghc
 augroup END
 
 " Change the directory of vim to current working directory
