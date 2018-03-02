@@ -47,7 +47,7 @@ map <Tab> <C-W>W:cd %:p:h<CR>:<CR>
 nnoremap <leader>s :nohlsearch<cr>
 
 " Startify
- nnoremap <leader>s : vsplit <bar> Startify<CR>
+ nnoremap <leader><leader>s : vsplit <bar> Startify<CR>
 
 " move out of insert mode
 inoremap jk <esc>
@@ -58,7 +58,8 @@ vnoremap <C-c> "+y
 nnoremap <F3> maggvG=`a
 
 " Spell Check
-nnoremap <F5> gg=G
+nnoremap <leader>c :execute Set80Char()<cr>
+nnoremap <leader>C :execute UnSet80Char()<cr>
 
 " numbers
 nnoremap <F4> :NumbersToggle<CR>
@@ -81,3 +82,5 @@ imap <left> <nop>
 
 nmap j <Plug>(accelerated_jk_gj)
 nmap k <Plug>(accelerated_jk_gk)
+
+nmap <leader>s <Plug>(easymotion-overwin-f)

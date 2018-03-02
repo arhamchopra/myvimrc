@@ -1,7 +1,4 @@
 "This file includes all the plugins for my VIM
-
-let mapleader="\<Space>"
-
 call plug#begin('~/.vim/plugged')
 
 " Just trying out
@@ -104,8 +101,6 @@ Plug 'ntpeters/vim-better-whitespace'
 
 call plug#end()
 
-filetype plugin on
-
 "***************************Syntastic***************************"
 " Show all warning, and error messages
 set statusline+=%#warningmsg#
@@ -122,15 +117,18 @@ let g:syntastic_python_python_exec = '/etc/python3'
 
 
 "***************************NerdTree***************************"
-"open a NERDTree automatically when vim starts up"
-autocmd vimenter * NERDTree
+augroup MyNerdTree
+    autocmd!
+    " Open a NERDTree automatically when vim starts up"
+    autocmd vimenter * NERDTree
 
-" open NERDTree automatically when vim starts up on opening a directory"
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+    " Open NERDTree automatically when vim starts up on opening a directory"
+    autocmd StdinReadPre * let s:std_in=1
+    autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
 
-"close vim if the only window left open is a NERDTree"
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+    " Close vim if the only window left open is a NERDTree"
+    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+augroup END
 
 "change default arrows"
 let g:NERDTreeDirArrowExpandable = '▸'
@@ -288,12 +286,12 @@ let g:javascript_conceal_arrow_function = "⇒"
 
 "***************************Haskellmode-vim***************************"
 let g:haddock_browser = "/usr/bin/firefox"
-" let g:haddock_docdir = "/home/arham/.vim/haskell-docs/"
+let g:haddock_docdir = "/home/arham/.vim/haskell-docs/"
 let g:haddock_browser_nosilent = 1
 au BufEnter *.hs compiler ghc
 
 
-"***************************haskell-vim***************************"
+"***************************Haskellmode-vim***************************"
 let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
 let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
 let g:haskell_enable_arrowsyntax = 1      " to enable highlighting of `proc`
@@ -323,7 +321,7 @@ let g:vimtex_compiler_enabled = 1
 let g:vimtex_compiler_callback_hooks = []
 let g:vimtex_compiler_method = "latexmk"
 let g:vimtex_compiler_latexmk = {
-    \ 'backend' : 'jobs',
+    \ 'backend' : 'nvim',
     \ 'background' : 1,
     \ 'callback' : 0,
     \ 'continuous' : 1,
