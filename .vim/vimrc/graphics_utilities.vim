@@ -16,4 +16,7 @@ function! UnSet80Char() abort
     endif
 endfunction
 
-
+function! NumberingToggle() abort
+        set invnumber
+        set invrelativenumber
+endfunction

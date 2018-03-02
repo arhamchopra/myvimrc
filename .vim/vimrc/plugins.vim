@@ -46,13 +46,6 @@ Plug 'matze/vim-move'
 " Make repeated j,k less of a pain... jump faster
 Plug 'rhysd/accelerated-jk'
 
-" Code Completion, Snippet plugins for vim
-" Plug 'Shougo/neocomplete.vim'
-" Plug 'Shougo/neoinclude.vim'
-" Plug 'Shougo/neosnippet.vim'
-" Plug 'Shougo/neosnippet-snippets'
-" Plug 'honza/vim-snippets'
-
 " This is one for a much better start screen
 Plug 'mhinz/vim-startify'
 
@@ -82,7 +75,6 @@ Plug 'ymatz/vim-latex-completion', {'for':'tex'}
 " When latex is used with vim
 Plug 'lervag/vimtex', {'for':'tex'}
 
-
 " <<<<<<<<<<<<<<<< Markdown >>>>>>>>>>>>>>>>
 Plug 'plasticboy/vim-markdown', {'for':'markdown'}
 Plug 'JamshedVesuna/vim-markdown-preview', {'for':'markdown'}
@@ -98,6 +90,13 @@ Plug 'ervandew/supertab'
 
 " Whitespaces are bad!!
 Plug 'ntpeters/vim-better-whitespace'
+
+" Code Completion, Snippet plugins for vim
+" Plug 'Shougo/neocomplete.vim'
+" Plug 'Shougo/neoinclude.vim'
+" Plug 'Shougo/neosnippet.vim'
+" Plug 'Shougo/neosnippet-snippets'
+" Plug 'honza/vim-snippets'
 
 call plug#end()
 
@@ -161,83 +160,6 @@ endif
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
-
-
-" "***************************NeoComplete***************************"
-" let g:acp_enableAtStartup = 0
-" let g:neocomplete#enable_at_startup = 1
-" " Use smartcase.
-" let g:neocomplete#enable_smart_case = 1
-" " Set minimum syntax keyword length.
-" let g:neocomplete#sources#syntax#min_keyword_length = 3
-" let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-"
-" " Define dictionary.
-" let g:neocomplete#sources#dictionary#dictionaries = {
-"       \ 'default' : '',
-"       \ 'vimshell' : $HOME.'/.vimshell_hist',
-"       \ 'scheme' : $HOME.'/.gosh_completions'
-"       \ }
-"
-" " Define keyword.
-" if !exists('g:neocomplete#keyword_patterns')
-"   let g:neocomplete#keyword_patterns = {}
-" endif
-" let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-"
-" inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
-"
-" " Enable omni completion.
-" autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-" autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-" autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-" autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-" autocmd FileType python setlocal omnifunc=jedi#completions
-" let g:jedi#completions_enabled = 0
-" let g:jedi#auto_vim_configuration = 0
-"
-" if !exists('g:neocomplete#force_omni_input_patterns')
-"   let g:neocomplete#force_omni_input_patterns = {}
-" endif
-" let g:neocomplete#force_omni_input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
-"
-" " Enable heavy omni completion.
-" if !exists('g:neocomplete#sources#omni#input_patterns')
-"   let g:neocomplete#sources#omni#input_patterns = {}
-" endif
-" "let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-" let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:]*\t]\%(\.\|->\)'
-" let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:]"*\t]\%(\.\|->\)\|\h\w*::'
-"
-" " For perlomni.vim setting.
-" " https://github.com/c9s/perlomni.vim
-" let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
-"
-
-" "***************************NeoSnippets***************************"
-" " Plugin key-mappings.
-" imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-" smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-" xmap <C-k>     <Plug>(neosnippet_expand_target)
-" "
-" " SuperTab like snippets behavior.
-" " imap <expr><TAB>
-" " \ pumvisible() ? "\<C-n>" :
-" " \ neosnippet#expandable_or_jumpable() ?
-" " \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-" smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-" " \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-" "
-" " " For conceal markers.
-" if has('conceal')
-"   set conceallevel=2 concealcursor=niv
-" endif"
-" " Enable snipMate compatibility feature.
-" let g:neosnippet#enable_snipmate_compatibility = 1
-" "
-" " Tell Neosnippet about the other snippets
-" " Requires honza/vim-snippets
-" let g:neosnippet#snippets_directory='~/.vim/plugged/vim-snippets/snippets'
 
 
 "***************************LastPlace***************************"
@@ -345,9 +267,96 @@ let g:tex_fast = "cmMprs"
 let g:tex_conceal = ""
 let g:tex_comment_nospell = 1
 
+
+"***************************vim-move***************************"
+" Specify the key to use with h,j,k,l to move the complete text along with 
+" proper indentation. Set CTRL as the key for this.
+let g:move_key_modifier = 'C'
+
+
 "***************************vim-markdown***************************"
 "
 "
 "***************************vim-markdown-preview***************************"
 let vim_markdown_preview_use_xdg_open=1
 let vim_markdown_preview_hotkey='<leader>p'
+
+
+" "***************************NeoComplete***************************"
+" let g:acp_enableAtStartup = 0
+" let g:neocomplete#enable_at_startup = 1
+" " Use smartcase.
+" let g:neocomplete#enable_smart_case = 1
+" " Set minimum syntax keyword length.
+" let g:neocomplete#sources#syntax#min_keyword_length = 3
+" let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+"
+" " Define dictionary.
+" let g:neocomplete#sources#dictionary#dictionaries = {
+"       \ 'default' : '',
+"       \ 'vimshell' : $HOME.'/.vimshell_hist',
+"       \ 'scheme' : $HOME.'/.gosh_completions'
+"       \ }
+"
+" " Define keyword.
+" if !exists('g:neocomplete#keyword_patterns')
+"   let g:neocomplete#keyword_patterns = {}
+" endif
+" let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+"
+" inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
+"
+" " Enable omni completion.
+" autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+" autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+" autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+" autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+" autocmd FileType python setlocal omnifunc=jedi#completions
+" let g:jedi#completions_enabled = 0
+" let g:jedi#auto_vim_configuration = 0
+"
+" if !exists('g:neocomplete#force_omni_input_patterns')
+"   let g:neocomplete#force_omni_input_patterns = {}
+" endif
+" let g:neocomplete#force_omni_input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
+"
+" " Enable heavy omni completion.
+" if !exists('g:neocomplete#sources#omni#input_patterns')
+"   let g:neocomplete#sources#omni#input_patterns = {}
+" endif
+" "let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+" let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:]*\t]\%(\.\|->\)'
+" let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:]"*\t]\%(\.\|->\)\|\h\w*::'
+"
+" " For perlomni.vim setting.
+" " https://github.com/c9s/perlomni.vim
+" let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+"
+
+" "***************************NeoSnippets***************************"
+" " Plugin key-mappings.
+" imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+" smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+" xmap <C-k>     <Plug>(neosnippet_expand_target)
+" "
+" " SuperTab like snippets behavior.
+" " imap <expr><TAB>
+" " \ pumvisible() ? "\<C-n>" :
+" " \ neosnippet#expandable_or_jumpable() ?
+" " \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+" smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+" " \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+" "
+" " " For conceal markers.
+" if has('conceal')
+"   set conceallevel=2 concealcursor=niv
+" endif"
+" " Enable snipMate compatibility feature.
+" let g:neosnippet#enable_snipmate_compatibility = 1
+" "
+" " Tell Neosnippet about the other snippets
+" " Requires honza/vim-snippets
+" let g:neosnippet#snippets_directory='~/.vim/plugged/vim-snippets/snippets'
+
+
+

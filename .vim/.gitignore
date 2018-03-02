@@ -4,5 +4,3 @@ haskellmode.config
 
 # Ignore the source code of all plugins
 plugged/*
-
-
