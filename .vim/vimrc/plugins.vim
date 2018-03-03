@@ -8,9 +8,14 @@ Plug 'vim-scripts/AutoComplPop'
 " Colorschemes for Vim
 Plug 'flazz/vim-colorschemes'
 
-" Airline
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+" vim-fugitive
+Plug 'tpope/vim-fugitive'
+
+" lightline.vim
+Plug 'itchyny/lightline.vim'
+
+" vim-buftabline
+Plug 'ap/vim-buftabline'
 
 " Maintains the indentation while pasting lines
 Plug 'sickill/vim-pasta'
@@ -134,10 +139,23 @@ let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 
 
-"***************************Airline***************************"
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#formatter = 'default'
-let g:airline_powerline_fonts = 1
+"***************************lightline.vim***************************"
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'fugitive#head'
+      \ },
+      \ }
+
+
+"***************************vim-buftabline***************************"
+let g:buftabline_numbers = 1
+let g:buftabline_indicators = 1
+let g:buftabline_separators = 1
 
 
 "***************************NerdCommenter***************************"

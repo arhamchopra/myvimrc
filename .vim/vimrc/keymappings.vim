@@ -48,7 +48,7 @@ nnoremap <leader>l :bnext<cr>
 "Move to previous tab
 nnoremap <leader>h :bprevious<cr>
 " Kill current buffer and move to previous buffer
-nnoremap <leader>q :bprevious <bar> bdelete #<cr>
+nnoremap <leader>x :bprevious <bar> bdelete #<cr>
 " Show the list of all buffers open
 nnoremap <leader>bl :buffers<CR>
 " Switch between buffers
@@ -63,7 +63,7 @@ nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 "Source vimrc config
 nnoremap <leader>qv :source $MYVIMRC<cr>
 "Remove highlighted words after search
-nnoremap <leader>ns :nohlsearch<cr>
+nnoremap <leader>rs :nohlsearch<cr>
 
 " 80 Char Limit Line
 " Set the 80 Char limit line

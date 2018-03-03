@@ -5,7 +5,6 @@ filetype plugin indent on    " required
 
 " ####### Section: Graphics #######
 colorscheme jellybeans
-let g:airline_theme='wombat'
 syntax on
 
 set title
@@ -63,4 +62,12 @@ augroup END
 " Change the directory of vim to current working directory
 augroup General
     autocmd BufEnter * lcd %:p:h
+augroup END
+
+" Tab colorings for buftabline in vim
+augroup TabColorings
+    highlight BufTabLineCurrent ctermfg=black ctermbg=lightyellow
+    highlight BufTabLineActive ctermfg=black ctermbg=grey
+    highlight BufTabLineHidden ctermfg=black ctermbg=green
+    highlight BufTabLineFill cterm=none ctermfg=blue ctermbg=grey
 augroup END
