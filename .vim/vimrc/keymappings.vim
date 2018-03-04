@@ -82,6 +82,10 @@ noremap <down> <nop>
 noremap <right> <nop>
 noremap <left> <nop>
 
+" Terminal mappings
+tnoremap <Esc> <C-\><C-n>
+tnoremap <expr> <C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi'
+
 " Exiting insert mode quickly
 imap jk <esc>
 

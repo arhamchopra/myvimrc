@@ -55,7 +55,7 @@ augroup AutoUpdateFiles
     autocmd FocusLost,WinLeave * :silent! w
 augroup END
 
-augroup Filetype_Settings
+augroup FiletypeSettings
     autocmd BufEnter *.hs compiler ghc
 augroup END
 
@@ -71,3 +71,11 @@ augroup TabColorings
     highlight BufTabLineHidden ctermfg=black ctermbg=green
     highlight BufTabLineFill cterm=none ctermfg=blue ctermbg=grey
 augroup END
+
+augroup TerminalSettings
+    autocmd!
+    set norelativenumber
+    set nonumber
+    set wrap
+augroup END
+
