@@ -29,7 +29,7 @@ set autoindent
 set copyindent
 set cindent
 
-set tabstop=8
+set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set shiftround
@@ -43,7 +43,7 @@ set directory=~/.vim/.swp//
 
 set wildmenu
 set wrap
-set scrolloff=7
+set scrolloff=3
 set mouse=a
 set clipboard+=unnamedplus
 
@@ -68,7 +68,7 @@ augroup END
 augroup TabColorings
     highlight BufTabLineCurrent ctermfg=black ctermbg=lightyellow
     highlight BufTabLineActive ctermfg=black ctermbg=grey
-    highlight BufTabLineHidden ctermfg=black ctermbg=green
+    highlight BufTabLineHidden ctermfg=black ctermbg=darkgreen
     highlight BufTabLineFill cterm=none ctermfg=blue ctermbg=grey
 augroup END
 

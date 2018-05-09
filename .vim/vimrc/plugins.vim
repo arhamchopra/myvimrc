@@ -56,7 +56,7 @@ Plug 'mhinz/vim-startify'
 
 " <<<<<<<<<<<<<<<< Haskell >>>>>>>>>>>>>>>>
 " Haskell Support in Vim
-Plug 'lukerandall/haskellmode-vim', {'for':'haskell'}
+" Plug 'lukerandall/haskellmode-vim', {'for':'haskell'}
 Plug 'neovimhaskell/haskell-vim', {'for':'haskell'}
 
 " <<<<<<<<<<<<<<<< Scala >>>>>>>>>>>>>>>>
@@ -116,8 +116,8 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 1
 let g:ycm_show_diagnostics_ui = 0
 let g:syntastic_haskell_checkers = ['hlint']
-let g:syntastic_python_checkers = ['/etc/python3']
-let g:syntastic_python_python_exec = '/etc/python3'
+" let g:syntastic_python_checkers = ['/etc/python3']
+" let g:syntastic_python_python_exec = '/etc/python3'
 
 
 "***************************NerdTree***************************"
@@ -162,9 +162,11 @@ let g:buftabline_separators = 1
 " Add spaces after comment delimiters by default"
 let g:NERDSpaceDelims = 1
 " Use compact syntax for prettified multi-line comments"
-let g:NERDCompactSexyComs = 1
+let g:NERDCompactSexyComs = 0
 " Align line-wise comment delimiters flush left instead of following code indentation"
 let g:NERDDefaultAlign = 'left'
+" Commenting an already nested line
+let g:NERDDefaultNesting = 0
 " Allow commenting and inverting empty lines (useful when commenting a region)"
 let g:NERDCommentEmptyLines = 1
 " Enable trimming of trailing whitespace when uncommenting"
@@ -225,9 +227,9 @@ let g:javascript_conceal_arrow_function = "⇒"
 
 
 "***************************Haskellmode-vim***************************"
-let g:haddock_browser = "/usr/bin/firefox"
-let g:haddock_docdir = "/home/arham/.vim/haskell-docs/"
-let g:haddock_browser_nosilent = 1
+" let g:haddock_browser = "/usr/bin/firefox"
+" let g:haddock_docdir = "/home/arham/.vim/haskell-docs/"
+" let g:haddock_browser_nosilent = 1
 
 
 "***************************Haskellmode-vim***************************"

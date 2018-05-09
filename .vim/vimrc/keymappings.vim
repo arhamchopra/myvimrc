@@ -20,8 +20,8 @@ nnoremap <F6> :GundoToggle<cr>
 nnoremap <leader><leader>s :vsplit<bar>Startify<cr>
 
 " Key Mappings SingleCompile
-nnoremap <F8> :SCCompile<cr><cr>
-nnoremap <F9> :SCCompileRun<cr><cr>
+nnoremap <F8> :SCCompile<cr>
+nnoremap <F9> :SCCompileRun<cr>
 
 " Key Mappings Accelerated_jk
 "Map j to move faster with j
@@ -67,14 +67,14 @@ nnoremap <leader>rs :nohlsearch<cr>
 
 " 80 Char Limit Line
 " Set the 80 Char limit line
-nnoremap <leader>c :execute Set80Char()<cr>
+nnoremap <leader>c :call Set80Char()<cr>
 "Remove the 80 Char limit line
-nnoremap <leader>C :execute UnSet80Char()<cr>
+nnoremap <leader>C :call UnSet80Char()<cr>
 
 "Autoindenting the whole file
 nnoremap <F3> maggvG=`a
 "Toggle the display of numbering column
-nnoremap <F4> :execute NumberingToggle()<cr>
+nnoremap <F4> :call NumberingToggle()<cr>
 
 "A good habit
 noremap <up> <nop>

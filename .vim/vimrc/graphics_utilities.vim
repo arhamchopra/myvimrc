@@ -17,6 +17,8 @@ function! UnSet80Char() abort
 endfunction
 
 function! NumberingToggle() abort
-        set invnumber
-        set invrelativenumber
+    let save_cursor = getcurpos()
+    set invnumber
+    set invrelativenumber
+    call setpos('.', save_cursor)
 endfunction
