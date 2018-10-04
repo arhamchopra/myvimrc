@@ -13,6 +13,9 @@ Plug 'tpope/vim-fugitive'
 
 " lightline.vim
 Plug 'itchyny/lightline.vim'
+if v:version > 800
+    Plug 'maximbaz/lightline-ale'
+endif
 
 " vim-buftabline
 Plug 'ap/vim-buftabline'
@@ -43,7 +46,11 @@ Plug 'sjl/gundo.vim', { 'on':'GundoToggle'}
 Plug 'ctrlpvim/ctrlp.vim'
 
 " Syntax checker for c,cpp,python,javascript and many more
-Plug 'scrooloose/syntastic'
+if v:version < 800
+    Plug 'scrooloose/syntastic'
+else
+    Plug 'w0rp/ale'
+endif
 
 " Takes care of indentation while moving pieces of code
 Plug 'matze/vim-move'
@@ -73,6 +80,9 @@ Plug 'moll/vim-node', {'for':'javascript'}
 
 " <<<<<<<<<<<<<<<< Python >>>>>>>>>>>>>>>>
 Plug 'davidhalter/jedi-vim', {'for':'python'}
+" This needs rope to be installed beforehand
+" Plug 'python-rope/ropevim', {'for':'python'}
+Plug 'nvie/vim-flake8', {'for':'python'}
 
 " <<<<<<<<<<<<<<<< Latex >>>>>>>>>>>>>>>>
 " Autocompletions and snippets for tex
@@ -105,20 +115,42 @@ Plug 'ntpeters/vim-better-whitespace'
 
 call plug#end()
 
+if v:version < 800
 "***************************Syntastic***************************"
-" Show all warning, and error messages
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 1
-let g:ycm_show_diagnostics_ui = 0
-let g:syntastic_haskell_checkers = ['hlint']
-" let g:syntastic_python_checkers = ['/etc/python3']
-" let g:syntastic_python_python_exec = '/etc/python3'
+    " Show all warning, and error messages
+    set statusline+=%#warningmsg#
+    set statusline+=%{SyntasticStatuslineFlag()}
+    set statusline+=%*
+    let g:syntastic_always_populate_loc_list = 1
+    let g:syntastic_auto_loc_list = 1
+    let g:syntastic_check_on_open = 1
+    let g:syntastic_check_on_wq = 1
+    let g:ycm_show_diagnostics_ui = 0
+    let g:syntastic_haskell_checkers = ['hlint']
+    let g:syntastic_cpp_compiler_options = "-std=c++11"
+    " let g:syntastic_python_checkers = ['pyflakes']
+else
+"***************************Ale*********************************"
+let g:ale_completion_enabled = 1
+let g:ale_linters = {
+\   'haskell': ['hlint'],
+\}
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_open_list = 1
+let g:ale_lint_on_enter = 1
+let g:ale_set_balloons = 1
 
+let g:ale_cpp_gcc_options = "-std=c++14"
+let g:ale_cpp_gcc_executable = "g++"
+endif
+
+
+"***************************Vim Flake8***************************"
+"disable McCabe complexity warnings
+let g:flake8_complexity_marker=''
 
 "***************************NerdTree***************************"
 augroup MyNerdTree
@@ -151,6 +183,13 @@ let g:lightline = {
       \ },
       \ }
 
+"***************************lightline-ale***************************"
+let g:lightline.component_expand = {
+      \  'linter_checking': 'lightline#ale#checking',
+      \  'linter_warnings': 'lightline#ale#warnings',
+      \  'linter_errors': 'lightline#ale#errors',
+      \  'linter_ok': 'lightline#ale#ok',
+      \ }
 
 "***************************vim-buftabline***************************"
 let g:buftabline_numbers = 1
@@ -180,6 +219,12 @@ endif
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
+
+
+"***************************SingleCompile***************************"
+let b:cppflags = '-std=c++14'
+call SingleCompile#SetCompilerTemplate('cpp', 'g++', 'GNU C++ Compiler', 'g++', b:cppflags.' -o $(FILE_TITLE)$', './$(FILE_TITLE)$')
+call SingleCompile#SetCompilerTemplate('cpp', 'make', 'Run make and ./main', 'make', 'makefile', './main')
 
 
 "***************************LastPlace***************************"
@@ -247,10 +292,18 @@ let g:haskell_backpack = 1                " to enable highlighting of backpack k
 " Load rope plugin
 let g:jedi#use_splits_not_buffers = "left"
 let g:jedi#popup_on_dot = 1
-let g:jedi#show_call_signatures = "0"
+let g:jedi#popup_select_first = 0
+let g:jedi#show_call_signatures = 1
 " Jedi too slow --> Rope off
-let g:pymode_rope = 0
+let g:pymode_rope = 1
 
+
+"***************************Rope***************************"
+let ropevim_vim_completion = 1
+let ropevim_extended_complete = 1
+let ropevim_enable_autoimport = 1
+let g:ropevim_autoimport_modules = ["os.*","traceback","django.*"]
+imap <s-space> <C-R>=RopeCodeAssistInsertMode()<CR>
 
 "***************************SuperTab***************************"
 let g:SuperTabDefaultCompletionType = "<c-n>"

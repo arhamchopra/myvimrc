@@ -44,7 +44,7 @@ set directory=~/.vim/.swp//
 set wildmenu
 set wrap
 set scrolloff=3
-set mouse=a
+set mouse=""
 set clipboard+=unnamedplus
 
 " ####### Section: Augroups ####### "
@@ -79,3 +79,8 @@ augroup TerminalSettings
     set wrap
 augroup END
 
+augroup Python
+    autocmd!
+    autocmd BufEnter *.py call Set80Char()
+    autocmd BufEnter *.py set foldmethod=indent
+augroup END
