@@ -3,13 +3,15 @@ let mapleader="\<Space>"
 
 " Key Mappings for NerdTree
 " Toggle the NERDTree
-nnoremap <F2> :NERDTreeToggle<cr>
+nnoremap <F2> :Lexplore<cr>
 
 " Key Mappings for Ack
 " Using 'Search' is equivalent to Ack!
 cnoreabbrev Search Ack!
 "Search for a string in current directory
 nnoremap <Leader>f :Ack!<Space>
+nnoremap <Leader><Leader>f <C-]>
+nnoremap <Leader><Leader>b <C-T>
 
 " Key Mappings Gundo Tree
 " Toggle the gundo tree
@@ -18,6 +20,8 @@ nnoremap <F6> :GundoToggle<cr>
 " Key Mappings for Startify
 " Open Startify is a new split
 nnoremap <leader><leader>s :vsplit<bar>Startify<cr>
+
+nnoremap <F7> :call ClangFormat()<cr>
 
 " Key Mappings SingleCompile
 nnoremap <F8> :SCCompile<cr>
@@ -43,10 +47,13 @@ nnoremap <leader><C-T> :tabprev<cr>
 " Buffer Management
 " Create a new tab
 nnoremap <leader>n :enew<cr>
-"Move to next tab
+" Move to next tab
 nnoremap <leader>l :bnext<cr>
-"Move to previous tab
+" Move to previous tab
 nnoremap <leader>h :bprevious<cr>
+" vim-bufsurf plugin needed here
+nnoremap <leader>bf :BufSurfForward<cr>
+nnoremap <leader>bb :BufSurfBack<cr>
 " Kill current buffer and move to previous buffer
 nnoremap <leader>x :bprevious <bar> bdelete #<cr>
 " Show the list of all buffers open
@@ -55,7 +62,11 @@ nnoremap <leader>bl :buffers<CR>
 nnoremap <leader>bs :buffers<cr>:buffer<Space>
 
 "Easy movement between different splits
-nnoremap <Tab> <C-W>W:cd %:p:h<cr>:<cr>
+" nnoremap <Tab> <C-W>W:cd %:p:h<cr>:<cr>
+nnoremap <C-H> <C-W><C-H>
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
 
 " My Vimrc
 "Open vimrc config for editing
@@ -77,10 +88,10 @@ nnoremap <F3> maggvG=`a
 nnoremap <F4> :call NumberingToggle()<cr>
 
 "A good habit
-noremap <up> <nop>
-noremap <down> <nop>
-noremap <right> <nop>
-noremap <left> <nop>
+" noremap <up> <nop>
+" noremap <down> <nop>
+" noremap <right> <nop>
+" noremap <left> <nop>
 
 " Terminal mappings
 " tnoremap <Esc> <C-\><C-n>
@@ -88,7 +99,6 @@ noremap <left> <nop>
 
 " Exiting insert mode quickly
 imap jk <esc>
-
 
 " " Neocomplete Key Mappings"
 " " inoremap <expr><C-g>     neocomplete#undo_completion()

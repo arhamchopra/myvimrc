@@ -4,7 +4,6 @@ set encoding=utf-8
 filetype plugin indent on    " required
 
 " ####### Section: Graphics #######
-colorscheme jellybeans
 syntax on
 
 set title
@@ -36,6 +35,8 @@ set shiftround
 set smarttab
 set expandtab
 
+set foldmethod=syntax
+
 set undofile
 set undodir=~/.vim/.undo//
 set backupdir=~/.vim/.backup//
@@ -45,13 +46,26 @@ set wildmenu
 set wrap
 set scrolloff=3
 set mouse=""
-set clipboard+=unnamedplus
+" set clipboard+=unnamedplus
+set clipboard=exclude:.*
+
+" Netrw Setup
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+let g:netrw_winsize = 15
+
+set matchpairs+=<:>
+
+" Colors
+colorscheme jelleybeans
 
 " ####### Section: Augroups ####### "
 augroup AutoUpdateFiles
     autocmd!
     set autoread
-    autocmd FocusGained,BufEnter * :silent! !
+    " autocmd FocusGained,BufEnter * :silent! !
     autocmd FocusLost,WinLeave * :silent! w
 augroup END
 
@@ -61,7 +75,7 @@ augroup END
 
 " Change the directory of vim to current working directory
 augroup General
-    autocmd BufEnter * lcd %:p:h
+    autocmd BufEnter * if &modifiable | lcd %:p:h | endif
 augroup END
 
 " Tab colorings for buftabline in vim
@@ -79,8 +93,35 @@ augroup TerminalSettings
     set wrap
 augroup END
 
+augroup remember_folds
+  autocmd!
+  autocmd BufWritePre * mkview
+  autocmd BufWritePost * silent! loadview
+augroup END
+
 augroup Python
     autocmd!
-    autocmd BufEnter *.py call Set80Char()
+    " autocmd BufEnter *.py call Set80Char()
     autocmd BufEnter *.py set foldmethod=indent
+    autocmd BufEnter *.py set tabstop=2
+    autocmd BufEnter *.py set shiftwidth=2
+    autocmd BufEnter *.py set shiftround
+augroup END
+
+augroup Cpp
+    autocmd!
+    " autocmd BufEnter *.py call Set80Char()
+    autocmd BufEnter *.cpp,*.cc,*.h,*.hpp,*.c set tabstop=2
+    autocmd BufEnter *.cpp,*.cc,*.h,*.hpp,*.c set shiftwidth=2
+    autocmd BufEnter *.cpp,*.cc,*.h,*.hpp,*.c set shiftround
+    autocmd BufEnter *.cpp,*.cc,*.h,*.hpp,*.c set complete-=i
+    autocmd BufEnter *.cpp,*.cc,*.h,*.hpp,*.c set nofoldenable
+    " autocmd BufNewFile,BufRead,BufEnter *.cpp,*.hpp set omnifunc=omni#cpp#complete#Main
+    " autocmd BufWritePre *.cpp,*.cc,*.h,*.hpp,*.c silent! call ClangFormat()
+augroup END
+
+augroup General
+    autocmd!
+    autocmd BufWritePre * silent! StripWhitespace
+    autocmd CompleteDone * pclose
 augroup END

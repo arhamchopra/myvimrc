@@ -1,24 +1,36 @@
 "This file includes all the plugins for my VIM
 call plug#begin('~/.vim/plugged')
 
+" PlugInstall and PlugUpdate will clone fzf in ~/.fzf and run the install script
+"   Both options are optional. You don't have to install fzf in ~/.fzf
+"   and you don't have to run the install script if you use fzf only in Vim.
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+
 " Just trying out
 Plug 'Shougo/vimproc.vim', {'do':'make'}
-Plug 'vim-scripts/AutoComplPop'
+" Plug 'vim-scripts/AutoComplPop'
+
+" Tmux integration of vim
+" Plug 'christoomey/vim-tmux-navigator'
 
 " Colorschemes for Vim
 Plug 'flazz/vim-colorschemes'
 
 " vim-fugitive
-Plug 'tpope/vim-fugitive'
+" Plug 'tpope/vim-fugitive'
 
 " lightline.vim
 Plug 'itchyny/lightline.vim'
-if v:version > 800
-    Plug 'maximbaz/lightline-ale'
-endif
+" if v:version > 800
+"     Plug 'maximbaz/lightline-ale'
+" endif
 
 " vim-buftabline
 Plug 'ap/vim-buftabline'
+
+" vim edit history based buffer movement
+Plug 'ton/vim-bufsurf'
 
 " Maintains the indentation while pasting lines
 Plug 'sickill/vim-pasta'
@@ -37,20 +49,22 @@ Plug 'mileszs/ack.vim'
 Plug 'scrooloose/nerdcommenter'
 
 " Browse your directory in tree like manner
-Plug 'scrooloose/nerdtree', { 'on':'NERDTreeToggle'}
+" Plug 'scrooloose/nerdtree', { 'on':'NERDTreeToggle'}
+" Switching over to Netrw
 
 " Browse your undo history in a tree like manner
-Plug 'sjl/gundo.vim', { 'on':'GundoToggle'}
+" Plug 'sjl/gundo.vim', { 'on':'GundoToggle'}
 
 " Make searching through files easier
-Plug 'ctrlpvim/ctrlp.vim'
+" Plug 'ctrlpvim/ctrlp.vim'
+" Use Fzf instead
 
 " Syntax checker for c,cpp,python,javascript and many more
-if v:version < 800
-    Plug 'scrooloose/syntastic'
-else
-    Plug 'w0rp/ale'
-endif
+" if v:version < 800
+"     Plug 'scrooloose/syntastic'
+" else
+"     Plug 'w0rp/ale'
+" endif
 
 " Takes care of indentation while moving pieces of code
 Plug 'matze/vim-move'
@@ -60,6 +74,15 @@ Plug 'rhysd/accelerated-jk'
 
 " This is one for a much better start screen
 Plug 'mhinz/vim-startify'
+
+" <<<<<<<<<<<<<<<< C,C++ >>>>>>>>>>>>>>>>
+" Plug 'lyuts/vim-rtags', {'for':'cpp'}
+
+" Easy management of tags in vim
+Plug 'ludovicchabant/vim-gutentags', {'for':['cpp', 'c']}
+Plug 'vim-scripts/OmniCppComplete', {'for':['cpp', 'c']}
+" Plug 'majutsushi/tagbar', {'for':['cpp', 'c']}
+
 
 " <<<<<<<<<<<<<<<< Haskell >>>>>>>>>>>>>>>>
 " Haskell Support in Vim
@@ -112,64 +135,67 @@ Plug 'ntpeters/vim-better-whitespace'
 " Plug 'Shougo/neosnippet.vim'
 " Plug 'Shougo/neosnippet-snippets'
 " Plug 'honza/vim-snippets'
+Plug 'ajh17/VimCompletesMe'
 
 call plug#end()
 
-if v:version < 800
+" if v:version < 800
 "***************************Syntastic***************************"
     " Show all warning, and error messages
-    set statusline+=%#warningmsg#
-    set statusline+=%{SyntasticStatuslineFlag()}
-    set statusline+=%*
-    let g:syntastic_always_populate_loc_list = 1
-    let g:syntastic_auto_loc_list = 1
-    let g:syntastic_check_on_open = 1
-    let g:syntastic_check_on_wq = 1
-    let g:ycm_show_diagnostics_ui = 0
-    let g:syntastic_haskell_checkers = ['hlint']
-    let g:syntastic_cpp_compiler_options = "-std=c++11"
+"     set statusline+=%#warningmsg#
+"     set statusline+=%{SyntasticStatuslineFlag()}
+"     set statusline+=%*
+"     let g:syntastic_always_populate_loc_list = 1
+"     let g:syntastic_auto_loc_list = 1
+"     let g:syntastic_check_on_open = 1
+"     let g:syntastic_check_on_wq = 1
+"     let g:ycm_show_diagnostics_ui = 0
+"     let g:syntastic_haskell_checkers = ['hlint']
+"     let g:syntastic_cpp_compiler_options = "-std=c++11"
     " let g:syntastic_python_checkers = ['pyflakes']
-else
+" else
 "***************************Ale*********************************"
-let g:ale_completion_enabled = 1
-let g:ale_linters = {
-\   'haskell': ['hlint'],
-\}
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'W'
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-let g:ale_lint_on_text_changed = 'never'
-let g:ale_open_list = 1
-let g:ale_lint_on_enter = 1
-let g:ale_set_balloons = 1
-
-let g:ale_cpp_gcc_options = "-std=c++14"
-let g:ale_cpp_gcc_executable = "g++"
-endif
-
+"     let g:ale_completion_enabled = 1
+"     let g:ale_linters = {
+"     \   'haskell': ['hlint'],
+"     \}
+"     let g:ale_echo_msg_error_str = 'E'
+"     let g:ale_echo_msg_warning_str = 'W'
+"     let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+"     let g:ale_lint_on_text_changed = 'never'
+"     let g:ale_open_list = 1
+"     let g:ale_lint_on_enter = 1
+"     let g:ale_set_balloons = 1
+"
+"     let g:ale_cpp_gcc_options = "-std=c++14"
+"     let g:ale_cpp_gcc_executable = "g++"
+" endif
 
 "***************************Vim Flake8***************************"
 "disable McCabe complexity warnings
 let g:flake8_complexity_marker=''
 
 "***************************NerdTree***************************"
-augroup MyNerdTree
-    autocmd!
-    " Open a NERDTree automatically when vim starts up"
-    autocmd vimenter * NERDTree
-
-    " Open NERDTree automatically when vim starts up on opening a directory"
-    autocmd StdinReadPre * let s:std_in=1
-    autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
-
-    " Close vim if the only window left open is a NERDTree"
-    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-augroup END
-
-"change default arrows"
-let g:NERDTreeDirArrowExpandable = '▸'
-let g:NERDTreeDirArrowCollapsible = '▾'
-
+" augroup MyNerdTree
+"     autocmd!
+"     Change directory the one for the currently opened file
+"     autocmd BufEnter * silent! if bufname('%') !~# "NERD_tree_" | cd %:p:h | NERDTreeCWD | wincmd p | endif
+"     autocmd BufEnter * call SyncTreeIf()
+"
+"     Open a NERDTree automatically when vim starts up"
+"     autocmd vimenter * NERDTree | wincmd p
+"
+"     Open NERDTree automatically when vim starts up on opening a directory"
+"     autocmd StdinReadPre * let s:std_in=1
+"     autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+"
+"     Close vim if the only window left open is a NERDTree"
+"     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" augroup END
+"
+" change default arrows"
+" let g:NERDTreeDirArrowExpandable = '▸'
+" let g:NERDTreeDirArrowCollapsible = '▾'
 
 "***************************lightline.vim***************************"
 let g:lightline = {
@@ -181,6 +207,8 @@ let g:lightline = {
       \ 'component_function': {
       \   'gitbranch': 'fugitive#head'
       \ },
+      \ 'separator': { 'left': '', 'right': '' },
+      \ 'subseparator': { 'left': '', 'right': '' }
       \ }
 
 "***************************lightline-ale***************************"
@@ -191,11 +219,15 @@ let g:lightline.component_expand = {
       \  'linter_ok': 'lightline#ale#ok',
       \ }
 
+
+"***************************vim-bufsurf***************************"
+"No configuration to change as of now :)
+
+
 "***************************vim-buftabline***************************"
 let g:buftabline_numbers = 1
 let g:buftabline_indicators = 1
 let g:buftabline_separators = 1
-
 
 "***************************NerdCommenter***************************"
 " Add spaces after comment delimiters by default"
@@ -213,10 +245,9 @@ let g:NERDTrimTrailingWhitespace = 1
 
 
 "***************************Ack, SilverSurfer***************************"
-if executable('ag')
+if executable('rg')
   let g:ackprg = 'rg --vimgrep --no-heading'
-endif
-if executable('ag')
+elseif executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
 
@@ -225,25 +256,11 @@ endif
 let b:cppflags = '-std=c++14'
 call SingleCompile#SetCompilerTemplate('cpp', 'g++', 'GNU C++ Compiler', 'g++', b:cppflags.' -o $(FILE_TITLE)$', './$(FILE_TITLE)$')
 call SingleCompile#SetCompilerTemplate('cpp', 'make', 'Run make and ./main', 'make', 'makefile', './main')
+call SingleCompile#SetCompilerTemplate('python', 'python', 'Run python3', 'python3', '', '')
 
 
 "***************************LastPlace***************************"
 let g:lastplace_ignore = "gitcommit,gitrebase,svn,hgcommit"
-
-
-"***************************CtrlP***************************"
-set grepprg=rg\ --color=always
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_working_path_mode = 'ra'
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux "
-let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
-let g:ctrlp_custom_ignore = {
-      \ 'dir':  '\v[\/]\.(git|hg|svn)$',
-      \ 'file': '\v\.(exe|so|dll)$',
-      \ 'link': 'some_bad_symbolic_links',
-      \ }
-
 
 "***************************DelimitMate***************************"
 let delimitMate_expand_cr = 1
@@ -275,9 +292,6 @@ let g:javascript_conceal_arrow_function = "⇒"
 " let g:haddock_browser = "/usr/bin/firefox"
 " let g:haddock_docdir = "/home/arham/.vim/haskell-docs/"
 " let g:haddock_browser_nosilent = 1
-
-
-"***************************Haskellmode-vim***************************"
 let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
 let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
 let g:haskell_enable_arrowsyntax = 1      " to enable highlighting of `proc`
@@ -294,20 +308,21 @@ let g:jedi#use_splits_not_buffers = "left"
 let g:jedi#popup_on_dot = 1
 let g:jedi#popup_select_first = 0
 let g:jedi#show_call_signatures = 1
+let g:jedi#force_py_version = 'auto'
+set omnifunc=jedi#completions
 " Jedi too slow --> Rope off
-let g:pymode_rope = 1
+let g:pymode_rope = 0
 
 
 "***************************Rope***************************"
-let ropevim_vim_completion = 1
-let ropevim_extended_complete = 1
-let ropevim_enable_autoimport = 1
-let g:ropevim_autoimport_modules = ["os.*","traceback","django.*"]
-imap <s-space> <C-R>=RopeCodeAssistInsertMode()<CR>
+" let ropevim_vim_completion = 1
+" let ropevim_extended_complete = 1
+" let ropevim_enable_autoimport = 1
+" let g:ropevim_autoimport_modules = ["os.*","traceback","django.*"]
+" imap <s-space> <C-R>=RopeCodeAssistInsertMode()<CR>
 
 "***************************SuperTab***************************"
 let g:SuperTabDefaultCompletionType = "<c-n>"
-
 
 "***************************vimtex***************************"
 let g:vimtex_enabled = 1
@@ -341,20 +356,18 @@ let g:tex_comment_nospell = 1
 
 
 "***************************vim-move***************************"
-" Specify the key to use with h,j,k,l to move the complete text along with 
+" Specify the key to use with h,j,k,l to move the complete text along with
 " proper indentation. Set CTRL as the key for this.
-let g:move_key_modifier = 'C'
+let g:move_key_modifier = 'M'
 
 
 "***************************vim-markdown***************************"
-"
-"
+
 "***************************vim-markdown-preview***************************"
 let vim_markdown_preview_use_xdg_open=1
 let vim_markdown_preview_hotkey='<leader>p'
 
-
-" "***************************NeoComplete***************************"
+" ***************************NeoComplete***************************"
 " let g:acp_enableAtStartup = 0
 " let g:neocomplete#enable_at_startup = 1
 " " Use smartcase.
@@ -429,3 +442,13 @@ let vim_markdown_preview_hotkey='<leader>p'
 " " Tell Neosnippet about the other snippets
 " " Requires honza/vim-snippets
 " let g:neosnippet#snippets_directory='~/.vim/plugged/vim-snippets/snippets'
+
+
+"***************************Vim-Tmux-Navigator***************************"
+" Disable tmux navigator when zooming the Vim pane
+let g:tmux_navigator_disable_when_zoomed = 1
+
+"***************************GutenTags***************************"
+let g:gutentags_trace = 0
+let g:gutentags_project_root = ['.git']
+let g:gutentags_ctags_extra_args = ['-R', '--sort=yes', '--fields=+niazS', '--extras=+q', '--c++-kinds=+px', '--c-kinds=+px', '--language-force=C++']

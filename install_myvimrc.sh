@@ -16,15 +16,15 @@ echo
 echo
 
 # Softlink the new vimrc files to HOME
-echo "ln -s $PATH/.vim ~/.vim"
+echo "/usr/bin/ln -s $PATH/.vim ~/.vim"
 echo
 echo
-ln -s $PATH/.vim ~/.vim
+/bin/ln -s $PATH/.vim ~/.vim
 
-echo "ln -s $PATH/.vimrc ~/.vimrc"
+echo "/usr/bin/ln -s $PATH/.vimrc ~/.vimrc"
 echo
 echo
-ln -s $PATH/.vimrc ~/.vimrc
+/bin/ln -s $PATH/.vimrc ~/.vimrc
 
 echo "Your vim config files(if they existed) have been moved to their corresponding .bck extensions"
 echo
