@@ -1,4 +1,5 @@
 set nocompatible
+filetype plugin on
 let g:bufferline_echo=0
 
 source ~/.vim/vimrc/graphics_utilities.vim

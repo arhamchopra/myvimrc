@@ -88,15 +88,13 @@ augroup END
 
 augroup TerminalSettings
     autocmd!
-    set norelativenumber
-    set nonumber
     set wrap
 augroup END
 
 augroup remember_folds
   autocmd!
   autocmd BufWritePre * mkview
-  autocmd BufWritePost * silent! loadview
+  autocmd BufRead * silent! loadview
 augroup END
 
 augroup Python
@@ -115,8 +113,6 @@ augroup Cpp
     autocmd BufEnter *.cpp,*.cc,*.h,*.hpp,*.c set shiftwidth=2
     autocmd BufEnter *.cpp,*.cc,*.h,*.hpp,*.c set shiftround
     autocmd BufEnter *.cpp,*.cc,*.h,*.hpp,*.c set complete-=i
-    autocmd BufEnter *.cpp,*.cc,*.h,*.hpp,*.c set nofoldenable
-    " autocmd BufNewFile,BufRead,BufEnter *.cpp,*.hpp set omnifunc=omni#cpp#complete#Main
     " autocmd BufWritePre *.cpp,*.cc,*.h,*.hpp,*.c silent! call ClangFormat()
 augroup END
 
@@ -125,3 +121,5 @@ augroup General
     autocmd BufWritePre * silent! StripWhitespace
     autocmd CompleteDone * pclose
 augroup END
+
+set tags+=/home/beta/Work/base/flash/tags

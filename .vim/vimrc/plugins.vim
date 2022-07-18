@@ -12,7 +12,7 @@ Plug 'Shougo/vimproc.vim', {'do':'make'}
 " Plug 'vim-scripts/AutoComplPop'
 
 " Tmux integration of vim
-" Plug 'christoomey/vim-tmux-navigator'
+Plug 'christoomey/vim-tmux-navigator'
 
 " Colorschemes for Vim
 Plug 'flazz/vim-colorschemes'
@@ -48,12 +48,8 @@ Plug 'mileszs/ack.vim'
 "A Powerful Commenting Tool"
 Plug 'scrooloose/nerdcommenter'
 
-" Browse your directory in tree like manner
-" Plug 'scrooloose/nerdtree', { 'on':'NERDTreeToggle'}
-" Switching over to Netrw
-
 " Browse your undo history in a tree like manner
-" Plug 'sjl/gundo.vim', { 'on':'GundoToggle'}
+Plug 'sjl/gundo.vim', { 'on':'GundoToggle'}
 
 " Make searching through files easier
 " Plug 'ctrlpvim/ctrlp.vim'
@@ -67,7 +63,7 @@ Plug 'scrooloose/nerdcommenter'
 " endif
 
 " Takes care of indentation while moving pieces of code
-Plug 'matze/vim-move'
+" Plug 'matze/vim-move'
 
 " Make repeated j,k less of a pain... jump faster
 Plug 'rhysd/accelerated-jk'
@@ -75,14 +71,15 @@ Plug 'rhysd/accelerated-jk'
 " This is one for a much better start screen
 Plug 'mhinz/vim-startify'
 
+" All powerful autocompleter
+" Plug 'Valloric/YouCompleteMe'
+
 " <<<<<<<<<<<<<<<< C,C++ >>>>>>>>>>>>>>>>
-" Plug 'lyuts/vim-rtags', {'for':'cpp'}
-
 " Easy management of tags in vim
-Plug 'ludovicchabant/vim-gutentags', {'for':['cpp', 'c']}
 Plug 'vim-scripts/OmniCppComplete', {'for':['cpp', 'c']}
-" Plug 'majutsushi/tagbar', {'for':['cpp', 'c']}
-
+Plug 'prabirshrestha/vim-lsp', {'for':['cpp', 'c']}
+Plug 'prabirshrestha/asyncomplete.vim', {'for':['cpp', 'c']}
+Plug 'prabirshrestha/asyncomplete-lsp.vim', {'for':['cpp', 'c']}
 
 " <<<<<<<<<<<<<<<< Haskell >>>>>>>>>>>>>>>>
 " Haskell Support in Vim
@@ -124,7 +121,7 @@ Plug 'xuhdev/SingleCompile'
 Plug 'easymotion/vim-easymotion'
 
 " The all powerful tab for doing everything else
-Plug 'ervandew/supertab'
+" Plug 'ervandew/supertab'
 
 " Whitespaces are bad!!
 Plug 'ntpeters/vim-better-whitespace'
@@ -137,11 +134,12 @@ Plug 'ntpeters/vim-better-whitespace'
 " Plug 'honza/vim-snippets'
 Plug 'ajh17/VimCompletesMe'
 
+Plug 'airblade/vim-rooter'
 call plug#end()
 
 " if v:version < 800
-"***************************Syntastic***************************"
-    " Show all warning, and error messages
+" ***************************Syntastic***************************"
+"     Show all warning, and error messages
 "     set statusline+=%#warningmsg#
 "     set statusline+=%{SyntasticStatuslineFlag()}
 "     set statusline+=%*
@@ -152,9 +150,9 @@ call plug#end()
 "     let g:ycm_show_diagnostics_ui = 0
 "     let g:syntastic_haskell_checkers = ['hlint']
 "     let g:syntastic_cpp_compiler_options = "-std=c++11"
-    " let g:syntastic_python_checkers = ['pyflakes']
+"     let g:syntastic_python_checkers = ['pyflakes']
 " else
-"***************************Ale*********************************"
+" ***************************Ale*********************************"
 "     let g:ale_completion_enabled = 1
 "     let g:ale_linters = {
 "     \   'haskell': ['hlint'],
@@ -167,7 +165,7 @@ call plug#end()
 "     let g:ale_lint_on_enter = 1
 "     let g:ale_set_balloons = 1
 "
-"     let g:ale_cpp_gcc_options = "-std=c++14"
+"     let g:ale_cpp_gcc_options = "-std=c++17 -I/home/beta/Work/base/flash/external/include"
 "     let g:ale_cpp_gcc_executable = "g++"
 " endif
 
@@ -448,7 +446,81 @@ let vim_markdown_preview_hotkey='<leader>p'
 " Disable tmux navigator when zooming the Vim pane
 let g:tmux_navigator_disable_when_zoomed = 1
 
+
 "***************************GutenTags***************************"
-let g:gutentags_trace = 0
-let g:gutentags_project_root = ['.git']
-let g:gutentags_ctags_extra_args = ['-R', '--sort=yes', '--fields=+niazS', '--extras=+q', '--c++-kinds=+px', '--c-kinds=+px', '--language-force=C++']
+" let g:gutentags_trace = 0
+" let g:gutentags_add_default_project_roots = 0
+" let g:gutentags_project_root = ['.gitmodules']
+"
+" let g:gutentags_generate_on_new = 1
+" let g:gutentags_generate_on_missing = 1
+" let g:gutentags_generate_on_write = 1
+" let g:gutentags_generate_on_empty_buffer = 0
+"
+" let g:gutentags_ctags_extra_args = ['-R', '--sort=yes', '--fields=+imaSft', '--extras=+q', '--c++-kinds=+pf', '--c-kinds=+pf']
+
+"*************************** FZF ***************************"
+" [Buffers] Jump to the existing window if possible
+let g:fzf_buffers_jump = 1
+
+" This is the default option:
+"   - Preview window on the right with 50% width
+"   - CTRL-/ will toggle preview window.
+let g:fzf_preview_window = ['right:50%', 'ctrl-/']
+
+
+"*************************** Tagbar ***************************"
+" let g:tagbar_use_cache = 0
+
+
+"*************************** OmniCppComplete ***************************"
+let OmniCpp_NamespaceSearch = 2
+let OmniCpp_GlobalScopeSearch = 1
+let OmniCpp_ShowAccess = 1
+let OmniCpp_ShowPrototypeInAbbr = 1 " show function parameters
+let OmniCpp_MayCompleteDot = 1 " autocomplete after .
+let OmniCpp_MayCompleteArrow = 1 " autocomplete after ->
+let OmniCpp_MayCompleteScope = 1 " autocomplete after ::
+set completeopt=menuone,menu,longest,preview
+
+
+"*************************** vim-lsp ***************************"
+" Register ccls C++ lanuage server.
+if executable('ccls')
+   au User lsp_setup call lsp#register_server({
+      \ 'name': 'ccls',
+      \ 'cmd': {server_info->['ccls']},
+      \ 'root_uri': {server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'compile_commands.json'))},
+      \ 'initialization_options': {'cache': {'directory': expand('~/.cache/ccls') }},
+      \ 'allowlist': ['c', 'cpp', 'objc', 'objcpp', 'cc', 'tpp', 't'],
+      \ })
+endif
+
+function! s:on_lsp_buffer_enabled() abort
+    setlocal omnifunc=lsp#complete
+    setlocal signcolumn=yes
+    if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+    nmap <buffer> gd <plug>(lsp-definition)
+    nmap <buffer> gs <plug>(lsp-document-symbol-search)
+    nmap <buffer> gS <plug>(lsp-workspace-symbol-search)
+    nmap <buffer> gr <plug>(lsp-references)
+    nmap <buffer> gi <plug>(lsp-implementation)
+    nmap <buffer> gt <plug>(lsp-type-definition)
+    nmap <buffer> <leader>rn <plug>(lsp-rename)
+    nmap <buffer> [g <plug>(lsp-previous-diagnostic)
+    nmap <buffer> ]g <plug>(lsp-next-diagnostic)
+    nmap <buffer> K <plug>(lsp-hover)
+    nnoremap <buffer> <expr><c-f> lsp#scroll(+4)
+    nnoremap <buffer> <expr><c-d> lsp#scroll(-4)
+    " refer to doc to add more commands
+endfunction
+
+augroup lsp_install
+    au!
+    " call s:on_lsp_buffer_enabled only for languages that has the server registered.
+    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+augroup END
+
+
+"*************************** vim-rooter ***************************"
+let g:rooter_patterns = ['.gitmodules','.vim']

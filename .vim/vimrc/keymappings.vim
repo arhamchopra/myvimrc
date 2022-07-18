@@ -1,17 +1,24 @@
 " This file will store all my key Mappings
 let mapleader="\<Space>"
 
-" Key Mappings for NerdTree
-" Toggle the NERDTree
+" Key Mappings for Directory Tree
 nnoremap <F2> :Lexplore<cr>
 
 " Key Mappings for Ack
 " Using 'Search' is equivalent to Ack!
 cnoreabbrev Search Ack!
 "Search for a string in current directory
-nnoremap <Leader>f :Ack!<Space>
-nnoremap <Leader><Leader>f <C-]>
-nnoremap <Leader><Leader>b <C-T>
+nnoremap <leader>f :Ack!<Space>
+
+" This needs a tag file-- TODO --
+nnoremap <leader><leader>f <C-]>
+nnoremap <leader><leader>b <C-T>
+
+" Key Mappings FZF
+nnoremap <leader>p :Files<cr>
+
+command! -bang ProjectFiles call fzf#vim#files(FindRootDirectory(), {'options': ['--info=inline', '--preview', 'cat {}']}, <bang>0)
+nnoremap <leader>P :ProjectFiles<cr>
 
 " Key Mappings Gundo Tree
 " Toggle the gundo tree
@@ -57,16 +64,16 @@ nnoremap <leader>bb :BufSurfBack<cr>
 " Kill current buffer and move to previous buffer
 nnoremap <leader>x :bprevious <bar> bdelete #<cr>
 " Show the list of all buffers open
-nnoremap <leader>bl :buffers<CR>
+nnoremap <leader>bl :buffers<cr>
 " Switch between buffers
 nnoremap <leader>bs :buffers<cr>:buffer<Space>
 
 "Easy movement between different splits
 " nnoremap <Tab> <C-W>W:cd %:p:h<cr>:<cr>
-nnoremap <C-H> <C-W><C-H>
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
+nnoremap <C-h> <C-W><C-H>
+nnoremap <C-j> <C-W><C-J>
+nnoremap <C-k> <C-W><C-K>
+nnoremap <C-l> <C-W><C-L>
 
 " My Vimrc
 "Open vimrc config for editing
@@ -100,6 +107,7 @@ nnoremap <F4> :call NumberingToggle()<cr>
 " Exiting insert mode quickly
 imap jk <esc>
 
+
 " " Neocomplete Key Mappings"
 " " inoremap <expr><C-g>     neocomplete#undo_completion()
 " inoremap <expr><C-l>     neocomplete#complete_common_string()
@@ -118,3 +126,16 @@ imap jk <esc>
 " inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 " " Close popup by <Space>.
 " " inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
+
+
+" Key bindings for vim-lsp.
+nn <silent> <leader><leader>f :LspDefinition<cr>
+nn <silent> <M-r> :LspReferences<cr>
+nn <f2> <leader><leader>r :LspRename<cr>
+nn <silent> <M-a> :LspWorkspaceSymbol<cr>
+nn <silent> <M-l> :LspDocumentSymbol<cr>
+
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
+
