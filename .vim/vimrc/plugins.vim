@@ -74,12 +74,18 @@ Plug 'mhinz/vim-startify'
 " All powerful autocompleter
 " Plug 'Valloric/YouCompleteMe'
 
+" <<<<<<<<<<<<<<<< Go >>>>>>>>>>>>>>>>
+Plug 'fatih/vim-go', { 'for': ['go'], 'do': ':GoUpdateBinaries'}
+
+" <<<<<<<<<<<<<<<< Rust >>>>>>>>>>>>>>>>
+Plug 'rust-lang/rust.vim', { 'for': ['rust']}
+
 " <<<<<<<<<<<<<<<< C,C++ >>>>>>>>>>>>>>>>
 " Easy management of tags in vim
 Plug 'vim-scripts/OmniCppComplete', {'for':['cpp', 'c']}
-Plug 'prabirshrestha/vim-lsp', {'for':['cpp', 'c']}
-Plug 'prabirshrestha/asyncomplete.vim', {'for':['cpp', 'c']}
-Plug 'prabirshrestha/asyncomplete-lsp.vim', {'for':['cpp', 'c']}
+Plug 'prabirshrestha/vim-lsp', {'for':['rust']}
+Plug 'prabirshrestha/asyncomplete.vim', {'for':['rust']}
+Plug 'prabirshrestha/asyncomplete-lsp.vim', {'for':['rust']}
 
 " <<<<<<<<<<<<<<<< Haskell >>>>>>>>>>>>>>>>
 " Haskell Support in Vim
@@ -127,11 +133,11 @@ Plug 'easymotion/vim-easymotion'
 Plug 'ntpeters/vim-better-whitespace'
 
 " Code Completion, Snippet plugins for vim
-" Plug 'Shougo/neocomplete.vim'
-" Plug 'Shougo/neoinclude.vim'
-" Plug 'Shougo/neosnippet.vim'
-" Plug 'Shougo/neosnippet-snippets'
-" Plug 'honza/vim-snippets'
+Plug 'Shougo/neocomplete.vim'
+Plug 'Shougo/neoinclude.vim'
+Plug 'Shougo/neosnippet.vim'
+Plug 'Shougo/neosnippet-snippets'
+Plug 'honza/vim-snippets'
 Plug 'ajh17/VimCompletesMe'
 
 Plug 'airblade/vim-rooter'
@@ -307,7 +313,8 @@ let g:jedi#popup_on_dot = 1
 let g:jedi#popup_select_first = 0
 let g:jedi#show_call_signatures = 1
 let g:jedi#force_py_version = 'auto'
-set omnifunc=jedi#completions
+" autocmd FileType python setlocal omnifunc=jedi#completions
+" set omnifunc=jedi#completions
 " Jedi too slow --> Rope off
 let g:pymode_rope = 0
 
@@ -496,6 +503,22 @@ if executable('ccls')
       \ })
 endif
 
+if executable('rust-analyzer')
+  au User lsp_setup call lsp#register_server({
+        \   'name': 'Rust Language Server',
+        \   'cmd': {server_info->['rust-analyzer']},
+        \   'allowlist': ['rust'],
+        \   'initialization_options': {
+        \     'cargo': {
+        \       'buildScripts': {
+        \         'enable': v:true,
+        \       },
+        \     },
+        \   },
+        \ })
+endif
+
+
 function! s:on_lsp_buffer_enabled() abort
     setlocal omnifunc=lsp#complete
     setlocal signcolumn=yes
@@ -524,3 +547,7 @@ augroup END
 
 "*************************** vim-rooter ***************************"
 let g:rooter_patterns = ['.gitmodules','.vim']
+
+
+"*************************** vim-go ***************************"
+autocmd Filetype go setlocal omnifunc=go#complete#Complete

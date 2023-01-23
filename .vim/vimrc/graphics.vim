@@ -122,4 +122,4 @@ augroup General
     autocmd CompleteDone * pclose
 augroup END
 
-set tags+=/home/beta/Work/base/flash/tags
+" set tags+=/home/beta/Work/base/flash/tags
