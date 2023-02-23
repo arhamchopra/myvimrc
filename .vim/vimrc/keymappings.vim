@@ -128,13 +128,6 @@ imap jk <esc>
 " " inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
 
 
-" Key bindings for vim-lsp.
-nn <silent> <leader><leader>f :LspDefinition<cr>
-nn <silent> <M-r> :LspReferences<cr>
-nn <f2> <leader><leader>r :LspRename<cr>
-nn <silent> <M-a> :LspWorkspaceSymbol<cr>
-nn <silent> <M-l> :LspDocumentSymbol<cr>
-
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"

@@ -21,13 +21,13 @@ Plug 'flazz/vim-colorschemes'
 " Plug 'tpope/vim-fugitive'
 
 " lightline.vim
-Plug 'itchyny/lightline.vim'
+" Plug 'itchyny/lightline.vim'
 " if v:version > 800
 "     Plug 'maximbaz/lightline-ale'
 " endif
 
 " vim-buftabline
-Plug 'ap/vim-buftabline'
+" Plug 'ap/vim-buftabline'
 
 " vim edit history based buffer movement
 Plug 'ton/vim-bufsurf'
@@ -73,19 +73,15 @@ Plug 'mhinz/vim-startify'
 
 " All powerful autocompleter
 " Plug 'Valloric/YouCompleteMe'
+"
+Plug 'puremourning/vimspector'
 
 " <<<<<<<<<<<<<<<< Go >>>>>>>>>>>>>>>>
 Plug 'fatih/vim-go', { 'for': ['go'], 'do': ':GoUpdateBinaries'}
 
-" <<<<<<<<<<<<<<<< Rust >>>>>>>>>>>>>>>>
-Plug 'rust-lang/rust.vim', { 'for': ['rust']}
-
 " <<<<<<<<<<<<<<<< C,C++ >>>>>>>>>>>>>>>>
 " Easy management of tags in vim
 Plug 'vim-scripts/OmniCppComplete', {'for':['cpp', 'c']}
-Plug 'prabirshrestha/vim-lsp', {'for':['rust']}
-Plug 'prabirshrestha/asyncomplete.vim', {'for':['rust']}
-Plug 'prabirshrestha/asyncomplete-lsp.vim', {'for':['rust']}
 
 " <<<<<<<<<<<<<<<< Haskell >>>>>>>>>>>>>>>>
 " Haskell Support in Vim
@@ -202,26 +198,26 @@ let g:flake8_complexity_marker=''
 " let g:NERDTreeDirArrowCollapsible = '▾'
 
 "***************************lightline.vim***************************"
-let g:lightline = {
-      \ 'colorscheme': 'wombat',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
-      \ },
-      \ 'component_function': {
-      \   'gitbranch': 'fugitive#head'
-      \ },
-      \ 'separator': { 'left': '', 'right': '' },
-      \ 'subseparator': { 'left': '', 'right': '' }
-      \ }
+" let g:lightline = {
+"       \ 'colorscheme': 'wombat',
+"       \ 'active': {
+"       \   'left': [ [ 'mode', 'paste' ],
+"       \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+"       \ },
+"       \ 'component_function': {
+"       \   'gitbranch': 'fugitive#head'
+"       \ },
+"       \ 'separator': { 'left': '', 'right': '' },
+"       \ 'subseparator': { 'left': '', 'right': '' }
+"       \ }
 
 "***************************lightline-ale***************************"
-let g:lightline.component_expand = {
-      \  'linter_checking': 'lightline#ale#checking',
-      \  'linter_warnings': 'lightline#ale#warnings',
-      \  'linter_errors': 'lightline#ale#errors',
-      \  'linter_ok': 'lightline#ale#ok',
-      \ }
+" let g:lightline.component_expand = {
+"       \  'linter_checking': 'lightline#ale#checking',
+"       \  'linter_warnings': 'lightline#ale#warnings',
+"       \  'linter_errors': 'lightline#ale#errors',
+"       \  'linter_ok': 'lightline#ale#ok',
+"       \ }
 
 
 "***************************vim-bufsurf***************************"
@@ -229,9 +225,9 @@ let g:lightline.component_expand = {
 
 
 "***************************vim-buftabline***************************"
-let g:buftabline_numbers = 1
-let g:buftabline_indicators = 1
-let g:buftabline_separators = 1
+" let g:buftabline_numbers = 1
+" let g:buftabline_indicators = 1
+" let g:buftabline_separators = 1
 
 "***************************NerdCommenter***************************"
 " Add spaces after comment delimiters by default"
@@ -335,7 +331,7 @@ let g:vimtex_compiler_enabled = 1
 let g:vimtex_compiler_callback_hooks = []
 let g:vimtex_compiler_method = "latexmk"
 let g:vimtex_compiler_latexmk = {
-    \ 'backend' : 'nvim',
+    \ 'backend' : 'vim',
     \ 'background' : 1,
     \ 'callback' : 0,
     \ 'continuous' : 1,
@@ -354,6 +350,8 @@ let g:vimtex_imaps_enabled = 1
 let g:vimtex_indent_enabled = 1
 let g:vimtex_motion_enabled = 1
 let g:vimtex_labels_enabled = 0
+let g:vimtex_view_method = 'zathura'
+let g:vimtex_view_enabled = 1
 let g:tex_flavor = "latex"
 let g:tex_fast = "cmMprs"
 let g:tex_conceal = ""
@@ -489,60 +487,6 @@ let OmniCpp_MayCompleteDot = 1 " autocomplete after .
 let OmniCpp_MayCompleteArrow = 1 " autocomplete after ->
 let OmniCpp_MayCompleteScope = 1 " autocomplete after ::
 set completeopt=menuone,menu,longest,preview
-
-
-"*************************** vim-lsp ***************************"
-" Register ccls C++ lanuage server.
-if executable('ccls')
-   au User lsp_setup call lsp#register_server({
-      \ 'name': 'ccls',
-      \ 'cmd': {server_info->['ccls']},
-      \ 'root_uri': {server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'compile_commands.json'))},
-      \ 'initialization_options': {'cache': {'directory': expand('~/.cache/ccls') }},
-      \ 'allowlist': ['c', 'cpp', 'objc', 'objcpp', 'cc', 'tpp', 't'],
-      \ })
-endif
-
-if executable('rust-analyzer')
-  au User lsp_setup call lsp#register_server({
-        \   'name': 'Rust Language Server',
-        \   'cmd': {server_info->['rust-analyzer']},
-        \   'allowlist': ['rust'],
-        \   'initialization_options': {
-        \     'cargo': {
-        \       'buildScripts': {
-        \         'enable': v:true,
-        \       },
-        \     },
-        \   },
-        \ })
-endif
-
-
-function! s:on_lsp_buffer_enabled() abort
-    setlocal omnifunc=lsp#complete
-    setlocal signcolumn=yes
-    if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
-    nmap <buffer> gd <plug>(lsp-definition)
-    nmap <buffer> gs <plug>(lsp-document-symbol-search)
-    nmap <buffer> gS <plug>(lsp-workspace-symbol-search)
-    nmap <buffer> gr <plug>(lsp-references)
-    nmap <buffer> gi <plug>(lsp-implementation)
-    nmap <buffer> gt <plug>(lsp-type-definition)
-    nmap <buffer> <leader>rn <plug>(lsp-rename)
-    nmap <buffer> [g <plug>(lsp-previous-diagnostic)
-    nmap <buffer> ]g <plug>(lsp-next-diagnostic)
-    nmap <buffer> K <plug>(lsp-hover)
-    nnoremap <buffer> <expr><c-f> lsp#scroll(+4)
-    nnoremap <buffer> <expr><c-d> lsp#scroll(-4)
-    " refer to doc to add more commands
-endfunction
-
-augroup lsp_install
-    au!
-    " call s:on_lsp_buffer_enabled only for languages that has the server registered.
-    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
-augroup END
 
 
 "*************************** vim-rooter ***************************"

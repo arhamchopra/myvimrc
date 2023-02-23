@@ -46,8 +46,8 @@ set wildmenu
 set wrap
 set scrolloff=3
 set mouse=""
-" set clipboard+=unnamedplus
-set clipboard=exclude:.*
+set clipboard+=unnamedplus
+" set clipboard=exclude:.*
 
 " Netrw Setup
 let g:netrw_banner = 0
@@ -120,6 +120,15 @@ augroup General
     autocmd!
     autocmd BufWritePre * silent! StripWhitespace
     autocmd CompleteDone * pclose
+augroup END
+
+augroup Rust
+    autocmd!
+    " autocmd BufEnter *.py call Set80Char()
+    autocmd BufEnter *.rs set foldmethod=indent
+    autocmd BufEnter *.rs set tabstop=2
+    autocmd BufEnter *.rs set shiftwidth=2
+    autocmd BufEnter *.rs set shiftround
 augroup END
 
 " set tags+=/home/beta/Work/base/flash/tags
