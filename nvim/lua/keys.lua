@@ -16,6 +16,9 @@ end
 -- Load all OPTs
 map("n", "<F1>", ":luafile ~/.config/nvim/lua/opts.lua<cr>")
 
+-- NeoTree
+map("n", "<leader>T", ":NeoTreeRevealToggle<cr>")
+
 
 -- Enable spell checking
 map("n", "<F2>", ":set spell!<cr>")
@@ -83,39 +86,18 @@ map("n", "<leader>qf", ":TodoQuickFix<cr>")
 -- Trouble
 map("n", "<leader>e", ":TroubleToggle<cr>")
 
--- Nvim Tree
-map("n", "<leader>nt", ":NvimTreeToggle<CR>")
-
--- Transparency
-map("n", "<leader>\\", ":TransparentToggle<CR>")
-
 -- Toggle colored column at 81
 map('n', '<leader>|', ':execute "set colorcolumn=" . (&colorcolumn == "" ? "81" : "")<CR>')
 
 -- Navigate buffers
-map('n', '<leader>bp', ':bprevious<CR>', {})
-map('n', '<leader>bn', ':bnext<CR>', {})
-map('n', '<leader>bf', ':bfirst<CR>', {})
-map('n', '<leader>bl', ':blast<CR>', {})
-map('n', '<leader>bd', ':bdelete<CR>', {})
+map('n', '<leader>bf', ':bprevious<CR>', {})
+map('n', '<leader>bb', ':bnext<CR>', {})
+map('n', '<leader>bx', ':bdelete<CR>', {})
 
 
 -- Tagbar Toggle
 -- map('n', "<leader>tt", ":TagbarToggle<CR>");
 map('n', "<leader>tt", ":SymbolsOutline<CR>");
-
-
--- Vimspector
-vim.cmd([[
-nmap <F5> <cmd>call vimspector#Launch()<cr>
-nmap <F10> <cmd>call vimspector#StepOver()<cr>
-nmap <F6> <cmd>call vimspector#Reset()<cr>
-nmap <F11> <cmd>call vimspector#StepOut()<cr>")
-nmap <F9> <cmd>call vimspector#StepInto()<cr>")
-]])
-map('n', "<F3>", ":call vimspector#ToggleBreakpoint()<cr>")
-map('n', "<F4>", ":call vimspector#AddWatch()<cr>")
-map('n', "<F7>", ":call vimspector#Evaluate()<cr>")
 
 
 -- LSP Navigation

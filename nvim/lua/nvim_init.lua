@@ -6,22 +6,16 @@ require('impatient')
 -- LEADER
 vim.g.mapleader = " " -- works across all nvim files
 
--- Color theme
-require('kanagawa').setup({
-    keywordStyle = { italic = false, bold = true },
-})
-vim.cmd("colorscheme kanagawa")
-
 -- Highlight colors
-vim.cmd([[
-hi CursorLineNr guifg=#7e9cd8
-" hi FoldColumn guifg=#4a4f54 guibg=#26292c
-hi FoldColumn guifg=#29292c guibg=#26292c
-" hi GitSignsAdd guibg=#193549 guifg=#3ad900
-hi GitSignsChange guibg=#193549 guifg=#ffc600
-hi GitSignsDelete guibg=#193549 guifg=#ff2600
-hi ColorColumn guifg=NONE guibg=#204563 gui=NONE
-]])
+-- vim.cmd([[
+-- hi CursorLineNr guifg=#7e9cd8
+-- " hi FoldColumn guifg=#4a4f54 guibg=#26292c
+-- hi FoldColumn guifg=#29292c guibg=#26292c
+-- " hi GitSignsAdd guibg=#193549 guifg=#3ad900
+-- hi GitSignsChange guibg=#193549 guifg=#ffc600
+-- hi GitSignsDelete guibg=#193549 guifg=#ff2600
+-- hi ColorColumn guifg=NONE guibg=#204563 gui=NONE
+-- ]])
 
 -- IMPORTS
 require('plug') -- Plugins
@@ -31,83 +25,88 @@ require('keys') -- Keymaps
 
 -- Lua line
 require("lualine").setup {
-  options = {
-    icons_enabled = false,
-    theme = "auto",
-    component_separators = { left = "", right = "" },
-    section_separators = { left = "", right = "" },
-    section_separators = "",
-    component_separators = "",
-    disabled_filetypes = {},
-    always_divide_middle = true,
-  },
-  sections = {
-    lualine_a = { "mode" },
-    lualine_b = {
-      "branch",
-      {
-        "diff",
-        source = diff,
-      },
+    options = {
+        icons_enabled = false,
+        theme = "auto",
+        component_separators = { left = "", right = "" },
+        section_separators = { left = "", right = "" },
+        section_separators = "",
+        component_separators = "",
+        disabled_filetypes = {},
+        always_divide_middle = true,
     },
-    lualine_c = {
-      "filename",
-      {
-        ime_state,
-        color = { fg = "black", bg = "#f46868" },
-      },
-      {
-        spell,
-        color = { fg = "black", bg = "#a7c080" },
-      },
-    },
-    lualine_x = {
-      "encoding",
-      {
-        "fileformat",
-        symbols = {
-          unix = "unix",
-          dos = "win",
-          mac = "mac",
+    sections = {
+        lualine_a = { "mode" },
+        lualine_b = {
+            "branch",
+            {
+                "diff",
+                source = diff,
+            },
         },
-      },
-      "filetype",
+        lualine_c = {
+            "filename",
+            {
+                ime_state,
+                color = { fg = "black", bg = "#f46868" },
+            },
+            {
+                spell,
+                color = { fg = "black", bg = "#a7c080" },
+            },
+        },
+        lualine_x = {
+            "encoding",
+            {
+                "fileformat",
+                symbols = {
+                    unix = "unix",
+                    dos = "win",
+                    mac = "mac",
+                },
+            },
+            "filetype",
+        },
+        lualine_y = { "progress" },
+        lualine_z = {
+            "location",
+            {
+                "diagnostics",
+                sources = { "nvim_diagnostic" },
+            },
+            {
+                trailing_space,
+                color = "WarningMsg",
+            },
+            {
+                mixed_indent,
+                color = "WarningMsg",
+            },
+        },
     },
-    lualine_y = { "progress" },
-    lualine_z = {
-      "location",
-      {
-        "diagnostics",
-        sources = { "nvim_diagnostic" },
-      },
-      {
-        trailing_space,
-        color = "WarningMsg",
-      },
-      {
-        mixed_indent,
-        color = "WarningMsg",
-      },
+    inactive_sections = {
+        lualine_a = {},
+        lualine_b = {},
+        lualine_c = { "filename" },
+        lualine_x = { "location" },
+        lualine_y = {},
+        lualine_z = {},
     },
-  },
-  inactive_sections = {
-    lualine_a = {},
-    lualine_b = {},
-    lualine_c = { "filename" },
-    lualine_x = { "location" },
-    lualine_y = {},
-    lualine_z = {},
-  },
-  tabline = {},
-  extensions = { "quickfix" },
+    tabline = {},
+    extensions = { "quickfix" },
 }
 
 ----------------------------------------
 -- PLUGINS initialization           ----
 ----------------------------------------
 
-require("null-ls").setup({
+local null_ls = require("null-ls")
+
+null_ls.setup({
     sources = {
+        null_ls.builtins.formatting.stylua,
+        null_ls.builtins.diagnostics.eslint,
+        -- null_ls.builtins.completion.spell,
     },
 })
 
@@ -157,20 +156,6 @@ require("better_escape").setup {
 }
 
 
--- FTerm
-require 'FTerm'.setup({
-    border     = 'single',
-    -- cmd = os.getenv('SHELL'),
-    cmd        = 'fish',
-    blend      = 0,
-    dimensions = {
-        height = 0.9,
-        width = 0.9,
-    },
-})
-vim.keymap.set('n', 't', '<CMD>lua require("FTerm").toggle()<CR>')
-vim.keymap.set('t', '<Esc>', '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>')
-
 -- Headlines for Markdown
 require "headlines".setup()
 
@@ -216,7 +201,6 @@ require("indent_blankline").setup {
     },
 }
 
-
 -- Todo Comments Setup
 require('todo-comments').setup {
     colors = {
@@ -228,7 +212,6 @@ require('todo-comments').setup {
     },
 }
 
-
 -- Trouble Setup
 require('trouble').setup {
     position = "right",
@@ -236,43 +219,6 @@ require('trouble').setup {
     padding = true,
     auto_preview = false,
 }
-
-
--- Nvim Tree Setup
-require('nvim-tree').setup {
-    sort_by = "case_sensitive",
-    view = {
-        adaptive_size = false,
-        mappings = {
-            list = {
-                { key = "u", action = "dir_up" },
-            },
-        },
-    },
-    renderer = {
-        group_empty = true,
-        icons = {
-            git_placement = "after",
-            glyphs = {
-                git = {
-                    unstaged = "-",
-                    staged = "s",
-                    untracked = "u",
-                    renamed = "r",
-                    deleted = "d",
-                    ignored = "i",
-                },
-            },
-        },
-    },
-    filters = {
-        dotfiles = false,
-    },
-    git = {
-        ignore = false,
-    },
-}
-
 
 -- Telescope Setup
 require('telescope').setup {
@@ -394,16 +340,14 @@ require("ccls").setup({
             height = 20,
             row = 0,
             col = 0,
-            },
+        },
     },
     filetypes = {"c", "cpp"},
 })
 
 -- RUST
 -- -------------------------------------
-local rt = require("rust-tools")
-
-rt.setup({
+require("rust-tools").setup({
     server = {
         on_attach = function(_, bufnr)
             -- Hover actions
@@ -628,37 +572,35 @@ require('ufo').setup()
 -- Only depend on `nvim-treesitter/queries/filetype/folds.scm`,
 -- performance and stability are better than `foldmethod=nvim_treesitter#foldexpr()`
 -- local ftMap = {
---     python = '',
---     cpp = '',
---     lua = '',
--- }
--- require('ufo').setup({
---     provider_selector = function(bufnr, filetype)
---         return ftMap[filetype]
---     end
--- })
--- require('ufo').setup({
---     provider_selector = function(bufnr, filetype, buftype)
---         return {'treesitter', 'indent'}
---     end
--- })
--- Hide foldcolumn for transparency
--- vim.opt.foldcolumn = '0'
+    --     python = '',
+    --     cpp = '',
+    --     lua = '',
+    -- }
+    -- require('ufo').setup({
+        --     provider_selector = function(bufnr, filetype)
+            --         return ftMap[filetype]
+            --     end
+            -- })
+            -- require('ufo').setup({
+                --     provider_selector = function(bufnr, filetype, buftype)
+                    --         return {'treesitter', 'indent'}
+                    --     end
+                    -- })
 
 
-------------------------------------
--- DIFFVIEW                     ----
--- -https://github.com/sindrets/diffview.nvim
--- --------------------------------
--- Lua
-local actions = require("diffview.actions")
+                    ------------------------------------
+                    -- DIFFVIEW                     ----
+                    -- -https://github.com/sindrets/diffview.nvim
+                    -- --------------------------------
+                    -- Lua
+                    local actions = require("diffview.actions")
 
-require("diffview").setup({
-})
+                    require("diffview").setup({
+                    })
 
--- LSP FUZZY --
-require('lspfuzzy').setup()
+                    -- LSP FUZZY --
+                    require('lspfuzzy').setup()
 
-require('pqf').setup()
+                    require('pqf').setup()
 
-require('bufferline').setup {}
+                    require('bufferline').setup {}

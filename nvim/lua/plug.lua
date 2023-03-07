@@ -1,31 +1,49 @@
 --[[ plug.lua ]]
 
 return require('packer').startup(function()
-    use "rebelot/kanagawa.nvim"
+    use 'wbthomason/packer.nvim' -- Packer package manager
+    -- use "rebelot/kanagawa.nvim"
     use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
-    use 'xiyaowong/nvim-transparent' -- enable transparency
+--     use 'xiyaowong/nvim-transparent' -- enable transparency
     use 'simrat39/symbols-outline.nvim' -- enable symbols tab
     use { 'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async' } -- good folding
-    use 'wbthomason/packer.nvim' -- Packer package manager
     use "max397574/better-escape.nvim" -- faster jj / kshadowk
     use 'williamboman/mason-lspconfig.nvim' -- closes gaps with mason
+
     use 'jose-elias-alvarez/null-ls.nvim' -- Use Vale as a prose linter
+
     use 'tanvirtin/monokai.nvim' -- Color scheme
     use 'kyazdani42/nvim-web-devicons'
-    use { 'kyazdani42/nvim-tree.lua', -- Filesystem navigation
-    requires = 'kyazdani42/nvim-web-devicons' } -- Filesystem icons
+    use {
+  "nvim-neo-tree/neo-tree.nvim",
+    branch = "v2.x",
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+      "MunifTanjim/nui.nvim",
+    }
+  }
+
     use { 'nvim-lualine/lualine.nvim', -- Statusline
     requires = { 'kyazdani42/nvim-web-devicons', opt = true } }
+
     use {
         "windwp/nvim-autopairs", -- Autocomplete (), {}, []
         config = function() require("nvim-autopairs").setup {} end
     }
+
     use 'lewis6991/impatient.nvim' -- Makes neovim faster
+
     use 'tpope/vim-surround' -- Add "", '', (),
+
     use { 'phaazon/hop.nvim', branch = 'v2' } -- Navitage to any word in the file
+
     use 'onsails/lspkind.nvim' -- shows icons in cmp
+
     use 'lukas-reineke/headlines.nvim' -- highlights headlines for markdown, other txt files
+
     use 'j-hui/fidget.nvim' -- sho status of nvim-lsp progress
+
     use 'L3MON4D3/LuaSnip' -- snippets for completion
     use 'saadparwaiz1/cmp_luasnip' -- snippets for completion'
     use {
@@ -34,18 +52,20 @@ return require('packer').startup(function()
             require 'alpha'.setup(require 'alpha.themes.dashboard'.config)
         end
     }
+
     use 'RRethy/vim-illuminate' -- Highlight other uses of word under cursor
     use "lukas-reineke/indent-blankline.nvim" -- ident lines
     use 'numToStr/Comment.nvim' -- Enable comments
     use 'folke/trouble.nvim' -- Summarizes issues
     use 'folke/todo-comments.nvim' -- Todo comments
+
     use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' } -- Make telescope faster
     use 'nvim-telescope/telescope.nvim' -- Fuzzy finder
     use 'nvim-telescope/telescope-media-files.nvim' -- image files preview in telescope
-    use 'numToStr/FTerm.nvim' -- Terminal in Lu-a
     use 'BurntSushi/ripgrep' -- Telescope grep
     use 'sharkdp/fd' -- Finder
     use 'neovim/nvim-lspconfig' -- Collection of common configurations for the Nvim LSP client
+
     use 'https://gitlab.com/yorickpeterse/nvim-pqf.git'
     use {'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons'}
     use {
@@ -56,6 +76,7 @@ return require('packer').startup(function()
         },
     }
     use 'hrsh7th/nvim-cmp' -- Completion framework
+
     use 'hrsh7th/cmp-nvim-lua'
     use 'hrsh7th/cmp-nvim-lsp' -- LSP completion source for nvim-cmp
     use 'hrsh7th/cmp-nvim-lsp-signature-help'
@@ -74,13 +95,13 @@ return require('packer').startup(function()
     use 'puremourning/vimspector' -- Debugger
     use 'mfussenegger/nvim-dap' -- Debugger
     use "stevearc/dressing.nvim"
-use({
-  "ziontee113/icon-picker.nvim",
-  config = function()
-    require("icon-picker").setup({
-      disable_legacy_commands = true
+    use({
+        "ziontee113/icon-picker.nvim",
+        config = function()
+            require("icon-picker").setup({
+                disable_legacy_commands = true
+            })
+        end,
     })
-  end,
-})
 end)
 
