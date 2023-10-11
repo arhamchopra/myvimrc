@@ -84,7 +84,7 @@ map("n", "<leader>fgb", ":lua require('telescope.builtin').git_branches()<cr>")
 map("n", "<leader>qf", ":TodoQuickFix<cr>")
 
 -- Trouble
-map("n", "<leader>e", ":TroubleToggle<cr>")
+map("n", "<leader>er", ":TroubleToggle<cr>")
 
 -- Toggle colored column at 81
 map('n', '<leader>|', ':execute "set colorcolumn=" . (&colorcolumn == "" ? "81" : "")<CR>')
@@ -117,10 +117,9 @@ nnoremap <silent> <leader>gw        <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
 ]])
 
 vim.cmd([[
-nnoremap <silent> <leader>gep <cmd>lua vim.diagnostic.goto_prev()<CR>
-nnoremap <silent> <leader>gen <cmd>lua vim.diagnostic.goto_next()<CR>
+nnoremap <silent> <leader>ep <cmd>lua vim.diagnostic.goto_prev()<CR>
+nnoremap <silent> <leader>en <cmd>lua vim.diagnostic.goto_next()<CR>
 ]])
-
 
 -- Crates Nvim
 vim.cmd([[

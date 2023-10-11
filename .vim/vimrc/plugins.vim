@@ -77,7 +77,7 @@ Plug 'mhinz/vim-startify'
 Plug 'puremourning/vimspector'
 
 " <<<<<<<<<<<<<<<< Go >>>>>>>>>>>>>>>>
-Plug 'fatih/vim-go', { 'for': ['go'], 'do': ':GoUpdateBinaries'}
+" Plug 'fatih/vim-go', { 'for': ['go'], 'do': ':GoUpdateBinaries'}
 
 " <<<<<<<<<<<<<<<< C,C++ >>>>>>>>>>>>>>>>
 " Easy management of tags in vim

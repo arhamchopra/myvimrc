@@ -77,11 +77,11 @@ nnoremap <C-l> <C-W><C-L>
 
 " My Vimrc
 "Open vimrc config for editing
-nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+" nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 "Source vimrc config
-nnoremap <leader>qv :source $MYVIMRC<cr>
+" nnoremap <leader>qv :source $MYVIMRC<cr>
 "Remove highlighted words after search
-nnoremap <leader>rs :nohlsearch<cr>
+" nnoremap <leader>rs :nohlsearch<cr>
 
 " 80 Char Limit Line
 " Set the 80 Char limit line

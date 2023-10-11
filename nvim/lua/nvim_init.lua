@@ -26,7 +26,7 @@ require('keys') -- Keymaps
 -- Lua line
 require("lualine").setup {
     options = {
-        icons_enabled = false,
+        icons_enabled = true,
         theme = "auto",
         component_separators = { left = "", right = "" },
         section_separators = { left = "", right = "" },
@@ -187,8 +187,8 @@ vim.cmd [[highlight IndentBlanklineIndent6 guifg=#2d3033 gui=nocombine]]
 require("indent_blankline").setup {
     -- char = '┊',
     char = ' ',
-    use_treesitter = true,
-    use_treesitter_scope = true,
+    use_treesitter = false,
+    use_treesitter_scope = false,
     show_first_indent_level = true,
     space_char_blankline = " ",
     char_highlight_list = {
@@ -214,10 +214,9 @@ require('todo-comments').setup {
 
 -- Trouble Setup
 require('trouble').setup {
-    position = "right",
-    width = 75,
+    position = "bottom",
     padding = true,
-    auto_preview = false,
+    auto_preview = true,
 }
 
 -- Telescope Setup
@@ -345,6 +344,7 @@ require("ccls").setup({
     filetypes = {"c", "cpp"},
 })
 
+
 -- RUST
 -- -------------------------------------
 require("rust-tools").setup({
@@ -418,6 +418,8 @@ require 'lspconfig'.texlab.setup {
 -- Marksman
 require 'lspconfig'.marksman.setup {
 }
+
+require 'lspconfig'.gopls.setup {}
 
 ----------------------------------------
 -- COMPLETION Setup                 ----
@@ -516,10 +518,11 @@ cmp.setup.cmdline('/', {
 require('nvim-treesitter.configs').setup {
     ensure_installed = { "bash", "c", "cpp", "cmake", "css", "dockerfile", "go", "gomod", "gowork", "hcl", "help", "html",
     "http", "javascript", "json", "lua", "make", "markdown", "python", "regex", "ruby", "rust", "toml", "vim", "yaml",
-    "zig" },
+    "zig"},
     auto_install = true,
     highlight = {
         enable = true,
+        disable = { "sql", "cpp" },
     },
     incremental_selection = {
         enable = true,
@@ -568,39 +571,19 @@ for _, ls in ipairs(language_servers) do
 end
 require('ufo').setup()
 
--- Option 3: treesitter as a main provider instead
--- Only depend on `nvim-treesitter/queries/filetype/folds.scm`,
--- performance and stability are better than `foldmethod=nvim_treesitter#foldexpr()`
--- local ftMap = {
-    --     python = '',
-    --     cpp = '',
-    --     lua = '',
-    -- }
-    -- require('ufo').setup({
-        --     provider_selector = function(bufnr, filetype)
-            --         return ftMap[filetype]
-            --     end
-            -- })
-            -- require('ufo').setup({
-                --     provider_selector = function(bufnr, filetype, buftype)
-                    --         return {'treesitter', 'indent'}
-                    --     end
-                    -- })
+------------------------------------
+-- DIFFVIEW                     ----
+-- -https://github.com/sindrets/diffview.nvim
+-- --------------------------------
+-- Lua
+-- local actions = require("diffview.actions")
 
+-- require("diffview").setup({
+-- })
 
-                    ------------------------------------
-                    -- DIFFVIEW                     ----
-                    -- -https://github.com/sindrets/diffview.nvim
-                    -- --------------------------------
-                    -- Lua
-                    local actions = require("diffview.actions")
+-- LSP FUZZY --
+require('lspfuzzy').setup()
 
-                    require("diffview").setup({
-                    })
+require('pqf').setup()
 
-                    -- LSP FUZZY --
-                    require('lspfuzzy').setup()
-
-                    require('pqf').setup()
-
-                    require('bufferline').setup {}
+require('bufferline').setup {}
