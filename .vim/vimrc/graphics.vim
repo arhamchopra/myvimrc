@@ -59,7 +59,7 @@ let g:netrw_winsize = 15
 set matchpairs+=<:>
 
 " Colors
-colorscheme jelleybeans
+" colorscheme jelleybeans
 
 " ####### Section: Augroups ####### "
 augroup AutoUpdateFiles

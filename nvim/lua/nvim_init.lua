@@ -6,17 +6,6 @@ require('impatient')
 -- LEADER
 vim.g.mapleader = " " -- works across all nvim files
 
--- Highlight colors
--- vim.cmd([[
--- hi CursorLineNr guifg=#7e9cd8
--- " hi FoldColumn guifg=#4a4f54 guibg=#26292c
--- hi FoldColumn guifg=#29292c guibg=#26292c
--- " hi GitSignsAdd guibg=#193549 guifg=#3ad900
--- hi GitSignsChange guibg=#193549 guifg=#ffc600
--- hi GitSignsDelete guibg=#193549 guifg=#ff2600
--- hi ColorColumn guifg=NONE guibg=#204563 gui=NONE
--- ]])
-
 -- IMPORTS
 require('plug') -- Plugins
 require('vars') -- Variables
@@ -100,16 +89,6 @@ require("lualine").setup {
 -- PLUGINS initialization           ----
 ----------------------------------------
 
-local null_ls = require("null-ls")
-
-null_ls.setup({
-    sources = {
-        null_ls.builtins.formatting.stylua,
-        null_ls.builtins.diagnostics.eslint,
-        -- null_ls.builtins.completion.spell,
-    },
-})
-
 -- Symbols Outline (new tagbar)
 require("symbols-outline").setup {
     show_guides = false,
@@ -168,38 +147,7 @@ require "fidget".setup {
     },
 }
 
-
--- Hop
-require 'hop'.setup {
-    keys = 'etovxqpdygfblzhckisuran',
-    jump_on_sole_occurrence = false,
-}
-
-
--- Ident Lines
-vim.cmd [[highlight IndentBlanklineIndent1 guifg=#2d3033 gui=nocombine]]
-vim.cmd [[highlight IndentBlanklineIndent2 guifg=#2d3033 gui=nocombine]]
-vim.cmd [[highlight IndentBlanklineIndent3 guifg=#2d3033 gui=nocombine]]
-vim.cmd [[highlight IndentBlanklineIndent4 guifg=#2d3033 gui=nocombine]]
-vim.cmd [[highlight IndentBlanklineIndent5 guifg=#2d3033 gui=nocombine]]
-vim.cmd [[highlight IndentBlanklineIndent6 guifg=#2d3033 gui=nocombine]]
-
-require("indent_blankline").setup {
-    -- char = '┊',
-    char = ' ',
-    use_treesitter = false,
-    use_treesitter_scope = false,
-    show_first_indent_level = true,
-    space_char_blankline = " ",
-    char_highlight_list = {
-        "IndentBlanklineIndent1",
-        "IndentBlanklineIndent2",
-        "IndentBlanklineIndent3",
-        "IndentBlanklineIndent4",
-        "IndentBlanklineIndent5",
-        "IndentBlanklineIndent6",
-    },
-}
+require("ibl").setup()
 
 -- Todo Comments Setup
 require('todo-comments').setup {
@@ -522,7 +470,7 @@ require('nvim-treesitter.configs').setup {
     auto_install = true,
     highlight = {
         enable = true,
-        disable = { "sql", "cpp" },
+        disable = { "sql", "c", "cpp" },
     },
     incremental_selection = {
         enable = true,

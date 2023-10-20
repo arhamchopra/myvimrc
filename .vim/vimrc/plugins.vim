@@ -15,25 +15,10 @@ Plug 'Shougo/vimproc.vim', {'do':'make'}
 Plug 'christoomey/vim-tmux-navigator'
 
 " Colorschemes for Vim
-Plug 'flazz/vim-colorschemes'
-
-" vim-fugitive
-" Plug 'tpope/vim-fugitive'
-
-" lightline.vim
-" Plug 'itchyny/lightline.vim'
-" if v:version > 800
-"     Plug 'maximbaz/lightline-ale'
-" endif
-
-" vim-buftabline
-" Plug 'ap/vim-buftabline'
-
-" vim edit history based buffer movement
-Plug 'ton/vim-bufsurf'
+" Plug 'flazz/vim-colorschemes'
 
 " Maintains the indentation while pasting lines
-Plug 'sickill/vim-pasta'
+" Plug 'sickill/vim-pasta'
 
 " Opening a file where you left
 Plug 'dietsche/vim-lastplace'
@@ -69,15 +54,13 @@ Plug 'sjl/gundo.vim', { 'on':'GundoToggle'}
 Plug 'rhysd/accelerated-jk'
 
 " This is one for a much better start screen
-Plug 'mhinz/vim-startify'
+" Plug 'mhinz/vim-startify'
 
 " All powerful autocompleter
 " Plug 'Valloric/YouCompleteMe'
 "
-Plug 'puremourning/vimspector'
-
 " <<<<<<<<<<<<<<<< Go >>>>>>>>>>>>>>>>
-" Plug 'fatih/vim-go', { 'for': ['go'], 'do': ':GoUpdateBinaries'}
+Plug 'fatih/vim-go', { 'for': ['go'], 'do': ':GoUpdateBinaries'}
 
 " <<<<<<<<<<<<<<<< C,C++ >>>>>>>>>>>>>>>>
 " Easy management of tags in vim
@@ -117,7 +100,7 @@ Plug 'plasticboy/vim-markdown', {'for':'markdown'}
 Plug 'JamshedVesuna/vim-markdown-preview', {'for':'markdown'}
 
 " Quickly compile your code
-Plug 'xuhdev/SingleCompile'
+" Plug 'xuhdev/SingleCompile'
 
 " Moving around just became a whole lot easier
 Plug 'easymotion/vim-easymotion'
@@ -220,10 +203,6 @@ let g:flake8_complexity_marker=''
 "       \ }
 
 
-"***************************vim-bufsurf***************************"
-"No configuration to change as of now :)
-
-
 "***************************vim-buftabline***************************"
 " let g:buftabline_numbers = 1
 " let g:buftabline_indicators = 1
@@ -253,10 +232,10 @@ endif
 
 
 "***************************SingleCompile***************************"
-let b:cppflags = '-std=c++14'
-call SingleCompile#SetCompilerTemplate('cpp', 'g++', 'GNU C++ Compiler', 'g++', b:cppflags.' -o $(FILE_TITLE)$', './$(FILE_TITLE)$')
-call SingleCompile#SetCompilerTemplate('cpp', 'make', 'Run make and ./main', 'make', 'makefile', './main')
-call SingleCompile#SetCompilerTemplate('python', 'python', 'Run python3', 'python3', '', '')
+" let b:cppflags = '-std=c++14'
+" call SingleCompile#SetCompilerTemplate('cpp', 'g++', 'GNU C++ Compiler', 'g++', b:cppflags.' -o $(FILE_TITLE)$', './$(FILE_TITLE)$')
+" call SingleCompile#SetCompilerTemplate('cpp', 'make', 'Run make and ./main', 'make', 'makefile', './main')
+" call SingleCompile#SetCompilerTemplate('python', 'python', 'Run python3', 'python3', '', '')
 
 
 "***************************LastPlace***************************"

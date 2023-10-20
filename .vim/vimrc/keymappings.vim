@@ -31,8 +31,8 @@ nnoremap <leader><leader>s :vsplit<bar>Startify<cr>
 nnoremap <F7> :call ClangFormat()<cr>
 
 " Key Mappings SingleCompile
-nnoremap <F8> :SCCompile<cr>
-nnoremap <F9> :SCCompileRun<cr>
+" nnoremap <F8> :SCCompile<cr>
+" nnoremap <F9> :SCCompileRun<cr>
 
 " Key Mappings Accelerated_jk
 "Map j to move faster with j
@@ -54,19 +54,6 @@ nnoremap <leader><C-T> :tabprev<cr>
 " Buffer Management
 " Create a new tab
 nnoremap <leader>n :enew<cr>
-" Move to next tab
-nnoremap <leader>l :bnext<cr>
-" Move to previous tab
-nnoremap <leader>h :bprevious<cr>
-" vim-bufsurf plugin needed here
-nnoremap <leader>bf :BufSurfForward<cr>
-nnoremap <leader>bb :BufSurfBack<cr>
-" Kill current buffer and move to previous buffer
-nnoremap <leader>x :bprevious <bar> bdelete #<cr>
-" Show the list of all buffers open
-nnoremap <leader>bl :buffers<cr>
-" Switch between buffers
-nnoremap <leader>bs :buffers<cr>:buffer<Space>
 
 "Easy movement between different splits
 " nnoremap <Tab> <C-W>W:cd %:p:h<cr>:<cr>

@@ -1,3 +1,11 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =1
-let g:netrw_dirhist_1='/home/arham/Haskell'
+let g:netrw_dirhistcnt =9
+let g:netrw_dirhist_9='/home/arham/CMU/15611/Written Assignment/A2/solutions'
+let g:netrw_dirhist_8='/home/arham/Rust/csv-tool/src'
+let g:netrw_dirhist_7='/home/arham/.config/libinput-gestures.conf'
+let g:netrw_dirhist_6='/home/arham/.config/sway_i3'
+let g:netrw_dirhist_5='/home/arham/CMU/15740/15-740-HW1/code/pintool/cache_test'
+let g:netrw_dirhist_4='/home/arham/Personalization/myvimrc/.vim/.swp'
+let g:netrw_dirhist_3='/home/arham/Personalization/myvimrc/.vim/.backup'
+let g:netrw_dirhist_2='/home/arham/CMU/15746/CP2/handout'
+let g:netrw_dirhist_1='/home/arham/CMU/15740/15-740-HW1/code/pintool'

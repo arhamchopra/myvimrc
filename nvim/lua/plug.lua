@@ -10,33 +10,23 @@ return require('packer').startup(function()
     use "max397574/better-escape.nvim" -- faster jj / kshadowk
     use 'williamboman/mason-lspconfig.nvim' -- closes gaps with mason
 
-    use 'jose-elias-alvarez/null-ls.nvim' -- Use Vale as a prose linter
+    use { "kabouzeid/nvim-jellybeans", requires = "rktjmp/lush.nvim" } -- colorscheme
+    use {'kyazdani42/nvim-web-devicons'}
+    use { "nvim-neo-tree/neo-tree.nvim",
+          branch = "v2.x",
+          requires = { "nvim-lua/plenary.nvim",
+                       "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+                       "MunifTanjim/nui.nvim",
+                     }
+        }
 
-    use 'tanvirtin/monokai.nvim' -- Color scheme
-    use 'kyazdani42/nvim-web-devicons'
-    use {
-  "nvim-neo-tree/neo-tree.nvim",
-    branch = "v2.x",
-    requires = {
-      "nvim-lua/plenary.nvim",
-      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-      "MunifTanjim/nui.nvim",
-    }
-  }
+    use { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true } }
 
-    use { 'nvim-lualine/lualine.nvim', -- Statusline
-    requires = { 'kyazdani42/nvim-web-devicons', opt = true } }
-
-    use {
-        "windwp/nvim-autopairs", -- Autocomplete (), {}, []
-        config = function() require("nvim-autopairs").setup {} end
-    }
+    use { "windwp/nvim-autopairs", config = function() require("nvim-autopairs").setup {} end }
 
     use 'lewis6991/impatient.nvim' -- Makes neovim faster
 
     use 'tpope/vim-surround' -- Add "", '', (),
-
-    use { 'phaazon/hop.nvim', branch = 'v2' } -- Navitage to any word in the file
 
     use 'onsails/lspkind.nvim' -- shows icons in cmp
 
@@ -46,15 +36,12 @@ return require('packer').startup(function()
 
     use 'L3MON4D3/LuaSnip' -- snippets for completion
     use 'saadparwaiz1/cmp_luasnip' -- snippets for completion'
-    use {
-        'goolord/alpha-nvim',
-        config = function()
-            require 'alpha'.setup(require 'alpha.themes.dashboard'.config)
-        end
-    }
+    use { 'nvimdev/dashboard-nvim', event = 'VimEnter',
+          config = function() require('dashboard').setup { } end,
+          requires = {'nvim-tree/nvim-web-devicons'}
+        }
 
     use 'RRethy/vim-illuminate' -- Highlight other uses of word under cursor
-    use "lukas-reineke/indent-blankline.nvim" -- ident lines
     use 'numToStr/Comment.nvim' -- Enable comments
     use 'folke/trouble.nvim' -- Summarizes issues
     use 'folke/todo-comments.nvim' -- Todo comments
@@ -62,12 +49,13 @@ return require('packer').startup(function()
     use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' } -- Make telescope faster
     use 'nvim-telescope/telescope.nvim' -- Fuzzy finder
     use 'nvim-telescope/telescope-media-files.nvim' -- image files preview in telescope
-    use 'BurntSushi/ripgrep' -- Telescope grep
-    use 'sharkdp/fd' -- Finder
-    use 'neovim/nvim-lspconfig' -- Collection of common configurations for the Nvim LSP client
+    use {'BurntSushi/ripgrep'} -- Telescope grep
+    use {'sharkdp/fd'} -- Finder
+    use {'neovim/nvim-lspconfig'} -- Collection of common configurations for the Nvim LSP client
 
-    use 'https://gitlab.com/yorickpeterse/nvim-pqf.git'
+    use {'https://gitlab.com/yorickpeterse/nvim-pqf.git'}
     use {'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons'}
+    use {'https://git.sr.ht/~marcc/BufferBrowser'}
     use {
         'ojroques/nvim-lspfuzzy',
         requires = {
@@ -95,6 +83,7 @@ return require('packer').startup(function()
     use 'puremourning/vimspector' -- Debugger
     use 'mfussenegger/nvim-dap' -- Debugger
     use "stevearc/dressing.nvim"
+    use "lukas-reineke/indent-blankline.nvim"
     use({
         "ziontee113/icon-picker.nvim",
         config = function()

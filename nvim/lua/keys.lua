@@ -90,10 +90,12 @@ map("n", "<leader>er", ":TroubleToggle<cr>")
 map('n', '<leader>|', ':execute "set colorcolumn=" . (&colorcolumn == "" ? "81" : "")<CR>')
 
 -- Navigate buffers
-map('n', '<leader>bf', ':bprevious<CR>', {})
-map('n', '<leader>bb', ':bnext<CR>', {})
-map('n', '<leader>bx', ':bdelete<CR>', {})
-
+map('n', '<leader>h', ':bprevious<CR>', {})
+map('n', '<leader>l', ':bnext<CR>', {})
+map('n', '<leader>x', ':bdelete<CR>', {})
+map('n', '<leader>bs', ':buffers<CR>:buffer<Space>', {})
+vim.keymap.set('n', '<leader>bf', require("buffer_browser").next, {desc = "Next [B]uffer []]"})
+vim.keymap.set('n', '<leader>bb', require("buffer_browser").prev, {desc = "Previous [B]uffer [[]"})
 
 -- Tagbar Toggle
 -- map('n', "<leader>tt", ":TagbarToggle<CR>");
